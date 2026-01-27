@@ -4,6 +4,29 @@ All notable changes to VanityMine will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.4.0] - 2026-01-27
+
+### Added
+- **Sound Notification** - Optional audio chime when address is found (Web Audio API)
+- **FAQ Page** - Comprehensive FAQ with 24 questions in 5 categories (General, Security, Technical, Usage, Troubleshooting)
+- **Home Navigation** - Added "Home" link in navigation bar
+- **Social Icons** - GitHub and X.com icons with direct links in navigation
+- **Clickable Logo** - Logo and brand name now link back to homepage
+
+### Changed
+- **Mobile Optimization** - Completely redesigned mobile layout for all components
+  - Hamburger menu for navigation
+  - Responsive hero section
+  - Stacked layouts for small screens
+  - Optimized font sizes and spacing
+- **Navigation Structure** - Reorganized: Home → How it Works → FAQ → GitHub → X.com
+
+### UI/UX
+- Sound toggle switch in Generator Controls
+- Sound preference saved to localStorage
+- Three-tone success chime (C5-E5-G5 chord)
+- FAQ with category filtering and accordion-style answers
+
 ## [0.3.0] - 2026-01-27
 
 ### Added

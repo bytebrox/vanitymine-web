@@ -16,11 +16,13 @@ This makes addresses more memorable and personal – perfect for public wallets,
 ## Features
 
 - **100% Client-Side** – All computation happens in your browser
-- **Multi-Core Processing** – Uses all available CPU cores for fast generation
-- **WASM-Powered** – High-performance WebAssembly cryptography (~22,000 keys/second)
+- **28x Faster** – WASM-powered engine outperforms JavaScript implementations
+- **Multi-Core Processing** – Uses all available CPU cores (~22,000 keys/second)
+- **Sound Notification** – Optional audio alert when address is found
 - **Instant Export** – Download keys as TXT or JSON (Solana CLI compatible)
 - **Works Offline** – No internet required after page loads
-- **Modern UI** – Clean, responsive design
+- **Mobile Optimized** – Fully responsive design with touch-friendly controls
+- **Comprehensive FAQ** – Detailed answers to common questions
 
 ## Performance
 
@@ -156,6 +158,16 @@ Generated keypairs work with all major Solana wallets:
 
 ## FAQ
 
+For detailed answers to common questions, visit our **[FAQ page](https://vanitymine.com/faq)** which covers:
+
+- **General** – What are vanity addresses, how long does it take, valid characters
+- **Security** – Is it safe, do you store keys, how to verify, offline usage
+- **Technical** – How it works, WASM, Web Workers, cryptography details
+- **Usage** – Wallet import, file formats, case sensitivity, patterns
+- **Troubleshooting** – Common issues and solutions
+
+### Quick Answers
+
 **Is this safe to use for real funds?**
 Yes, as long as you verify the security yourself (see above). The keys are generated using industry-standard cryptography and never leave your browser.
 
@@ -168,6 +180,9 @@ Yes! But combined length increases difficulty exponentially. A 2+2 pattern is as
 **What characters are valid?**
 Base58 alphabet: `123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz`
 Note: `0`, `O`, `I`, and `l` are excluded to avoid confusion.
+
+**Can I get notified when an address is found?**
+Yes! Enable the "Sound Notification" toggle in the Generator Controls. A pleasant chime will play when your pattern is matched.
 
 ## Disclaimer
 
