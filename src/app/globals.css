@@ -1,0 +1,167 @@
+/* Import fonts - must be first */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Swiss/Print Base Styles */
+  html {
+    @apply antialiased;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans;
+  }
+
+  /* Typography hierarchy */
+  h1 {
+    @apply text-display font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply text-headline font-semibold;
+  }
+
+  h3 {
+    @apply text-title font-medium;
+  }
+
+  /* Selection styling - newspaper red */
+  ::selection {
+    @apply bg-accent text-white;
+  }
+
+  /* Focus states - accessibility */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ink;
+  }
+}
+
+@layer components {
+  /* Newspaper-style dividers */
+  .divider {
+    @apply border-t border-ink;
+  }
+
+  .divider-thick {
+    @apply border-t-2 border-ink;
+  }
+
+  .divider-double {
+    @apply border-t-3 border-ink relative;
+  }
+
+  .divider-double::after {
+    content: '';
+    @apply absolute top-[3px] left-0 right-0 border-t border-ink;
+  }
+
+  /* Swiss grid container */
+  .container-grid {
+    @apply max-w-5xl mx-auto px-grid;
+  }
+
+  /* Print-style section */
+  .section {
+    @apply py-section;
+  }
+
+  /* Newspaper column layout */
+  .columns-news {
+    @apply grid gap-grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  /* Key display box */
+  .key-box {
+    @apply font-mono text-sm bg-white border border-ink p-4 break-all;
+  }
+
+  /* Button styles - Swiss minimal */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 
+           font-medium text-body transition-all duration-150
+           focus-visible:outline-2 focus-visible:outline-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn bg-ink text-paper hover:bg-muted;
+  }
+
+  .btn-secondary {
+    @apply btn bg-transparent text-ink border-2 border-ink 
+           hover:bg-ink hover:text-paper;
+  }
+
+  .btn-danger {
+    @apply btn bg-accent text-white hover:opacity-90;
+  }
+
+  /* Input styles */
+  .input {
+    @apply w-full px-4 py-3 text-body bg-white border-2 border-ink
+           font-mono placeholder:text-muted
+           focus:outline-none focus:border-accent;
+  }
+
+  /* Status badge */
+  .badge {
+    @apply inline-flex items-center px-2 py-1 text-micro font-medium uppercase tracking-wider;
+  }
+
+  .badge-success {
+    @apply badge bg-green-100 text-green-800;
+  }
+
+  .badge-warning {
+    @apply badge bg-yellow-100 text-yellow-800;
+  }
+
+  .badge-info {
+    @apply badge bg-blue-100 text-blue-800;
+  }
+
+  /* Card component */
+  .card {
+    @apply bg-white border border-ink p-grid;
+  }
+
+  /* Newspaper masthead style */
+  .masthead {
+    @apply text-center py-8 border-b-3 border-ink;
+  }
+
+  /* Stats display */
+  .stat {
+    @apply text-center;
+  }
+
+  .stat-value {
+    @apply text-headline font-bold tabular-nums;
+  }
+
+  .stat-label {
+    @apply text-caption text-muted uppercase tracking-wider;
+  }
+}
+
+@layer utilities {
+  /* Tabular numbers for stats */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Newspaper-style small caps */
+  .small-caps {
+    font-variant-caps: small-caps;
+    letter-spacing: 0.05em;
+  }
+
+  /* Print-style drop cap */
+  .drop-cap::first-letter {
+    @apply float-left text-5xl font-bold leading-none mr-2 mt-1;
+  }
+}
