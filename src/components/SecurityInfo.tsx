@@ -95,9 +95,9 @@ export function SecurityInfo({ isOpen, onClose }: SecurityInfoProps) {
             <div className="space-y-3 text-body">
               <p>
                 <strong>Where does the computation happen?</strong> Everything 
-                runs in <em>your browser</em>, not on any server. The hosting 
-                platform (e.g. Vercel) only delivers static files – HTML, CSS, 
-                and JavaScript. Once loaded, your browser executes all code locally.
+                runs in <em>your browser</em>, not on any server. The server 
+                only delivers static files – HTML, CSS, and JavaScript. Once 
+                loaded, your browser executes all code locally.
               </p>
               <p>
                 <strong>Web Workers (Browser Threads):</strong> Web Workers are 
@@ -128,7 +128,7 @@ export function SecurityInfo({ isOpen, onClose }: SecurityInfoProps) {
             <div className="space-y-2 text-body">
               <div className="grid grid-cols-2 gap-4 text-caption">
                 <div className="bg-ink/5 p-3">
-                  <p className="font-bold mb-2">Server (Vercel)</p>
+                  <p className="font-bold mb-2">Server</p>
                   <ul className="space-y-1 text-muted">
                     <li>• Delivers static files</li>
                     <li>• No computation</li>

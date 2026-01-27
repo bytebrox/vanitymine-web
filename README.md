@@ -99,12 +99,12 @@ You don't have to trust us – you can verify it yourself:
                                  │ Static files only (HTML/JS/CSS)
                                  │ No computation, no key access
 ┌─────────────────────────────────────────────────────────────────┐
-│                    HOSTING (Vercel/GitHub)                      │
+│                      SERVER / HOSTING                           │
 │                    Just a static file server                    │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-The hosting platform (Vercel) only delivers static files. Once loaded:
+The server only delivers static files. Once loaded:
 - Your browser executes all JavaScript locally
 - Web Workers run on your CPU cores, not on any server
 - Performance depends on your hardware, not server capacity
