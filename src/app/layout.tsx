@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://vanitymine.com'),
   title: 'VanityMine | Solana Vanity Address Generator',
   description:
     'Generate custom Solana addresses with your desired prefix or suffix. 100% client-side, open source, and secure.',
@@ -12,23 +13,33 @@ export const metadata: Metadata = {
     'wallet',
     'address generator',
     'blockchain',
+    'vanitymine',
   ],
-  authors: [{ name: 'VanityMine' }],
+  authors: [{ name: 'VanityMine', url: 'https://vanitymine.com' }],
+  creator: 'VanityMine',
+  publisher: 'VanityMine',
   openGraph: {
     title: 'VanityMine | Solana Vanity Address Generator',
     description:
       'Generate custom Solana addresses with your desired prefix or suffix. 100% client-side and secure.',
+    url: 'https://vanitymine.com',
+    siteName: 'VanityMine',
     type: 'website',
+    locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'VanityMine | Solana Vanity Address Generator',
     description:
       'Generate custom Solana addresses with your desired prefix or suffix.',
+    site: '@vanitymine',
   },
   robots: {
     index: true,
     follow: true,
+  },
+  alternates: {
+    canonical: 'https://vanitymine.com',
   },
 };
 
