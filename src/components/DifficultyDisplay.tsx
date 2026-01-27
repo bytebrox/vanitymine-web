@@ -6,7 +6,7 @@
  */
 
 import { useMemo } from 'react';
-import { estimateDifficulty, formatDifficulty, estimateTime } from '@/lib/validation';
+import { estimateDifficulty, formatDifficulty, estimateTime, getFirstCharWarning, getFirstCharRarity } from '@/lib/validation';
 
 interface DifficultyDisplayProps {
   prefix: string;
@@ -57,7 +57,21 @@ export function DifficultyDisplay({
 
   const level = getDifficultyLevel();
   const hasPattern = prefix.length > 0 || suffix.length > 0;
-  const showWarning = prefix.length + suffix.length > 5;
+  const showLengthWarning = prefix.length + suffix.length > 5;
+  
+  // Check for rare first character warning
+  const firstCharWarning = useMemo(
+    () => getFirstCharWarning(prefix, caseSensitive),
+    [prefix, caseSensitive]
+  );
+  
+  const firstCharRarity = useMemo(
+    () => getFirstCharRarity(prefix),
+    [prefix]
+  );
+  
+  // Show extreme warning for very rare patterns
+  const isExtremelyRare = firstCharRarity.rarity === 'extreme' || firstCharRarity.rarity === 'very_rare';
 
   return (
     <div className="border-2 border-ink p-6">
@@ -102,12 +116,32 @@ export function DifficultyDisplay({
       </div>
 
       {/* Warning area */}
-      {showWarning && (
-        <div className="mt-6 pt-4 border-t border-ink/20">
-          <p className="text-micro text-accent">
-            Warning: Longer patterns take exponentially longer to find.
-            Each additional character multiplies search time by ~58x.
-          </p>
+      {(showLengthWarning || firstCharWarning) && (
+        <div className="mt-6 pt-4 border-t border-ink/20 space-y-2">
+          {/* Rare first character warning - HIGH PRIORITY */}
+          {firstCharWarning && (
+            <div className={`p-3 border-l-4 ${isExtremelyRare ? 'bg-red-50 border-red-500' : 'bg-yellow-50 border-yellow-500'}`}>
+              <p className={`text-sm font-medium ${isExtremelyRare ? 'text-red-800' : 'text-yellow-800'}`}>
+                {isExtremelyRare ? '⚠️ Extreme Difficulty' : '⚠️ Increased Difficulty'}
+              </p>
+              <p className={`text-micro mt-1 ${isExtremelyRare ? 'text-red-700' : 'text-yellow-700'}`}>
+                {firstCharWarning}
+              </p>
+              {isExtremelyRare && (
+                <p className="text-micro mt-2 text-red-600 font-medium">
+                  Tip: Move your pattern to the SUFFIX field instead, or disable case-sensitive matching.
+                </p>
+              )}
+            </div>
+          )}
+          
+          {/* Length warning */}
+          {showLengthWarning && (
+            <p className="text-micro text-accent">
+              Note: Longer patterns take exponentially longer to find.
+              Each additional character multiplies search time by ~58x.
+            </p>
+          )}
         </div>
       )}
     </div>
