@@ -15,6 +15,8 @@ interface GeneratorControlsProps {
   onStop: () => void;
   onThreadsChange: (threads: number) => void;
   disabled?: boolean;
+  soundEnabled?: boolean;
+  onSoundToggle?: () => void;
 }
 
 export function GeneratorControls({
@@ -25,6 +27,8 @@ export function GeneratorControls({
   onStop,
   onThreadsChange,
   disabled = false,
+  soundEnabled = true,
+  onSoundToggle,
 }: GeneratorControlsProps) {
   const isRunning = status === 'running';
   const canStart = !disabled && (status === 'idle' || status === 'stopped' || status === 'found');
@@ -70,6 +74,31 @@ export function GeneratorControls({
         {maxThreads} CPU cores detected. Using {threads} worker{threads !== 1 ? 's' : ''} 
         {threads < maxThreads && ' (1 core reserved for UI)'}
       </p>
+
+      {/* Sound toggle */}
+      {onSoundToggle && (
+        <div className="flex items-center justify-between mb-6 pb-4 border-b border-ink/20">
+          <div className="flex items-center gap-2">
+            <span className="text-caption font-medium uppercase tracking-wider">
+              Sound Notification
+            </span>
+            <span className="text-micro text-muted">(when found)</span>
+          </div>
+          <button
+            onClick={onSoundToggle}
+            className={`w-12 h-6 rounded-full relative transition-colors ${
+              soundEnabled ? 'bg-accent' : 'bg-ink/20'
+            }`}
+            aria-label={soundEnabled ? 'Disable sound' : 'Enable sound'}
+          >
+            <span
+              className={`absolute top-1 w-4 h-4 bg-paper rounded-full transition-all shadow ${
+                soundEnabled ? 'left-7' : 'left-1'
+              }`}
+            />
+          </button>
+        </div>
+      )}
 
       {/* Main action buttons */}
       <div className="flex gap-3">

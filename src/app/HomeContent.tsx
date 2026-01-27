@@ -5,7 +5,7 @@
  * Separated to allow Suspense boundary for useSearchParams
  */
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
   Navbar,
@@ -19,16 +19,27 @@ import {
   Footer,
 } from '@/components';
 import { useGenerator } from '@/hooks/useGenerator';
+import { useSound } from '@/hooks/useSound';
 import { validatePrefix, validateSuffix, estimateDifficulty } from '@/lib/validation';
 
 export function HomeContent() {
   const { state, start, stop, reset, updateConfig, maxThreads } = useGenerator();
+  const { soundEnabled, toggleSound, playSuccessSound } = useSound();
   const [showSecurityInfo, setShowSecurityInfo] = useState(false);
   const [copied, setCopied] = useState(false);
   const searchParams = useSearchParams();
+  const prevResultRef = useRef<typeof result>(null);
 
   const { status, config, stats, result } = state;
   const { prefix, suffix, caseSensitive, threads } = config;
+
+  // Play sound when result is found
+  useEffect(() => {
+    if (result && result !== prevResultRef.current) {
+      playSuccessSound();
+    }
+    prevResultRef.current = result;
+  }, [result, playSuccessSound]);
 
   // Load pattern from URL parameters on mount
   useEffect(() => {
@@ -86,7 +97,7 @@ export function HomeContent() {
       <Header />
 
       {/* Main content */}
-      <main className="flex-1 px-6 md:px-12 lg:px-20 py-12">
+      <main className="flex-1 px-4 sm:px-6 md:px-12 lg:px-20 py-8 sm:py-12">
         {result ? (
           // Show result when found
           <ResultDisplay result={result} onReset={handleReset} />
@@ -160,6 +171,8 @@ export function HomeContent() {
                 onStop={stop}
                 onThreadsChange={(value) => updateConfig({ threads: value })}
                 disabled={!canStart}
+                soundEnabled={soundEnabled}
+                onSoundToggle={toggleSound}
               />
 
               {/* Live stats with progress */}

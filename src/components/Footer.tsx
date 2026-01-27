@@ -3,6 +3,7 @@
 /**
  * Footer component
  * Full-width editorial style
+ * Mobile-optimized layout
  */
 
 export function Footer() {
@@ -10,18 +11,18 @@ export function Footer() {
 
   return (
     <footer className="w-full bg-ink text-paper mt-section">
-      <div className="px-6 md:px-12 lg:px-20 py-16">
+      <div className="px-4 sm:px-6 md:px-12 lg:px-20 py-10 sm:py-16">
         {/* Main footer content */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 sm:gap-12 mb-8 sm:mb-12">
           {/* Brand */}
-          <div className="col-span-2 lg:col-span-2">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-14 h-14 bg-accent flex items-center justify-center rounded overflow-hidden p-2">
+          <div className="sm:col-span-2 lg:col-span-2">
+            <a href="/" className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6 hover:opacity-80 transition-opacity w-fit">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-accent flex items-center justify-center rounded overflow-hidden p-1.5 sm:p-2">
                 <img src="/logo_w.png" alt="VanityMine" className="w-full h-full object-contain" />
               </div>
-              <span className="font-bold text-2xl tracking-tight">VanityMine</span>
-            </div>
-            <p className="text-paper/70 leading-relaxed max-w-sm">
+              <span className="font-bold text-xl sm:text-2xl tracking-tight">VanityMine</span>
+            </a>
+            <p className="text-paper/70 leading-relaxed text-sm sm:text-base max-w-sm">
               A free, open-source tool for generating custom Solana addresses.
               Built with security and transparency as the top priorities.
             </p>
@@ -29,10 +30,18 @@ export function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider mb-6">
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-4 sm:mb-6">
               Resources
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base">
+              <li>
+                <a
+                  href="/faq"
+                  className="text-paper/70 hover:text-paper transition-colors"
+                >
+                  FAQ
+                </a>
+              </li>
               <li>
                 <a
                   href="https://solana.com"
@@ -68,10 +77,10 @@ export function Footer() {
 
           {/* Security */}
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider mb-6">
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-4 sm:mb-6">
               Security
             </h4>
-            <ul className="space-y-3 text-paper/70">
+            <ul className="space-y-2 sm:space-y-3 text-paper/70 text-sm sm:text-base">
               <li>✓ 100% Client-Side</li>
               <li>✓ No Server Storage</li>
               <li>✓ Open Source</li>
@@ -81,10 +90,10 @@ export function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider mb-6">
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-4 sm:mb-6">
               Connect
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base">
               <li>
                 <a
                   href="https://github.com/bytebrox/vanitymine-web"
@@ -110,10 +119,10 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t-2 border-accent mb-8" />
+        <div className="border-t-2 border-accent mb-6 sm:mb-8" />
 
         {/* Bottom line */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-paper/50">
+        <div className="flex flex-col gap-2 sm:gap-4 text-xs sm:text-sm text-paper/50">
           <p>
             © {year} VanityMine — Not affiliated with Solana Foundation
           </p>
