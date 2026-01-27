@@ -16,8 +16,8 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-accent flex items-center justify-center p-1.5">
-                <img src="/logo_w.png" alt="VanityMine" className="w-full h-full object-contain" />
+              <div className="w-12 h-12 bg-accent flex items-center justify-center rounded-sm overflow-hidden">
+                <img src="/logo_w.png" alt="VanityMine" className="w-full h-full object-cover" />
               </div>
               <span className="font-bold text-2xl tracking-tight">VanityMine</span>
             </div>
