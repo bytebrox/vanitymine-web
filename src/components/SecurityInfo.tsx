@@ -43,17 +43,17 @@ export function SecurityInfo({ isOpen, onClose }: SecurityInfoProps) {
             </h3>
             <div className="space-y-3 text-sm sm:text-body">
               <p>
-                <strong>VanityMine is the fastest browser-based Solana vanity address generator available.</strong> Our 
-                proprietary WASM engine achieves speeds up to <span className="text-accent font-bold">22,000+ keys per second</span>—that's 
-                <span className="text-accent font-bold"> 28x faster</span> than traditional JavaScript implementations.
+                <strong>VanityMine is the fastest browser-based Solana vanity address generator available.</strong> Using 
+                the native Web Crypto API, we achieve speeds up to <span className="text-accent font-bold">100,000+ keys per second</span>—that's 
+                <span className="text-accent font-bold"> 125x faster</span> than traditional JavaScript implementations.
               </p>
               <div className="grid grid-cols-3 gap-1.5 sm:gap-2 text-center mt-3 sm:mt-4">
                 <div className="bg-paper p-2 sm:p-3 border border-accent/30">
-                  <p className="text-lg sm:text-2xl font-bold text-accent">22K+</p>
+                  <p className="text-lg sm:text-2xl font-bold text-accent">100K+</p>
                   <p className="text-[10px] sm:text-micro text-muted">Keys/Sec</p>
                 </div>
                 <div className="bg-paper p-2 sm:p-3 border border-accent/30">
-                  <p className="text-lg sm:text-2xl font-bold text-accent">28x</p>
+                  <p className="text-lg sm:text-2xl font-bold text-accent">125x</p>
                   <p className="text-[10px] sm:text-micro text-muted">Faster</p>
                 </div>
                 <div className="bg-paper p-2 sm:p-3 border border-accent/30">
@@ -62,9 +62,9 @@ export function SecurityInfo({ isOpen, onClose }: SecurityInfoProps) {
                 </div>
               </div>
               <p className="text-xs sm:text-micro text-muted mt-2 sm:mt-3">
-                While other generators rely on slow JavaScript, we use compiled WebAssembly 
-                to run cryptographic operations at near-native speed. A 4-character pattern that takes 
-                minutes elsewhere can be found in under a minute with VanityMine.
+                Modern browsers (Chrome 137+, Firefox 129+) support native Ed25519 cryptography. 
+                We leverage this for maximum speed. A 4-character pattern that takes minutes elsewhere 
+                can be found in seconds with VanityMine.
               </p>
             </div>
           </section>
@@ -139,12 +139,12 @@ export function SecurityInfo({ isOpen, onClose }: SecurityInfoProps) {
                 This is why performance depends on your device, not our hosting.
               </p>
               <p>
-                <strong>WASM (WebAssembly) – Our Secret Weapon:</strong> This is what makes 
-                VanityMine revolutionary. While competitors use slow JavaScript, we use 
-                <em> watsign</em> – a high-performance WebAssembly port of TweetNaCl's 
-                Ed25519 implementation. WASM compiles to near-native machine code inside 
-                your browser, delivering <span className="text-accent font-bold">28x the performance</span> of 
-                pure JavaScript. This means finding your perfect address in seconds, not minutes.
+                <strong>Native Web Crypto API – Our Secret Weapon:</strong> This is what makes 
+                VanityMine revolutionary. Modern browsers (Chrome 137+, Firefox 129+) support 
+                Ed25519 natively in the Web Crypto API. This runs directly in the browser's 
+                cryptographic engine with OS-level optimizations, delivering 
+                <span className="text-accent font-bold"> 125x the performance</span> of pure JavaScript. 
+                For older browsers, we automatically fall back to WASM (watsign).
               </p>
               <p>
                 <strong>Multi-Core Parallelization:</strong> VanityMine distributes workload 

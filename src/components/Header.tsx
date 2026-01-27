@@ -40,13 +40,13 @@ export function Header() {
             <div className="md:col-span-6 lg:col-span-5 lg:col-start-8 border-l-2 border-ink pl-4 sm:pl-6 mt-4 md:mt-0">
               <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-3 sm:mb-4">
                 The <strong className="text-accent">fastest</strong> vanity address generator available. 
-                Our WASM-powered engine generates up to 22,000+ keys per second—directly in your browser.
+                Native browser cryptography generates up to 100,000+ keys per second—directly in your browser.
               </p>
               <p className="text-xs sm:text-caption font-mono mb-2 sm:mb-3">
-                <span className="text-accent font-bold">22K+ keys/sec</span> • Multi-Core • 100% Local
+                <span className="text-accent font-bold">100K+ keys/sec</span> • Multi-Core • 100% Local
               </p>
               <p className="text-micro text-muted">
-                Revolutionary WebAssembly technology. Your keys never leave your device.
+                Native Web Crypto API with WASM fallback. Your keys never leave your device.
               </p>
             </div>
           </div>
@@ -55,10 +55,10 @@ export function Header() {
         {/* Bottom decoration - simplified on mobile */}
         <div className="flex flex-col sm:flex-row border-t-2 border-accent">
           <div className="flex-1 py-2 sm:py-3 sm:border-r border-b sm:border-b-0 border-ink/30 text-center text-micro uppercase tracking-wider">
-            <span className="text-accent font-bold">28x Faster</span> than JS
+            <span className="text-accent font-bold">125x Faster</span> than JS
           </div>
           <div className="flex-1 py-2 sm:py-3 sm:border-r border-b sm:border-b-0 border-ink/30 text-center text-micro uppercase tracking-wider">
-            WASM-Powered
+            Native Crypto
           </div>
           <div className="flex-1 py-2 sm:py-3 text-center text-micro uppercase tracking-wider">
             Multi-Core

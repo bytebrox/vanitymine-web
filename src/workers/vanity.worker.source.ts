@@ -1,5 +1,5 @@
 /**
- * VanityMine Web Worker - WASM High Performance Edition
+ * VanityMine Web Worker - High Performance Edition
  * 
  * This file is compiled with esbuild to public/vanity-worker.js
  * 
@@ -8,10 +8,75 @@
  * - All cryptographic operations happen locally
  * - Private keys never leave this worker except through postMessage
  * 
- * PERFORMANCE: Uses watsign (WASM-based Ed25519) for ~5x speedup over JS
+ * PERFORMANCE: Uses native Web Crypto API (Ed25519) when available,
+ * falls back to watsign WASM for older browsers.
  */
 
 import { keyPairFromSeed } from 'watsign';
+
+// Check if native Ed25519 is supported
+let useNativeCrypto = false;
+
+async function checkNativeSupport(): Promise<boolean> {
+  try {
+    const testKey = await crypto.subtle.generateKey(
+      { name: 'Ed25519' },
+      true,
+      ['sign', 'verify']
+    );
+    return testKey !== null;
+  } catch {
+    return false;
+  }
+}
+
+// Initialize native support check
+checkNativeSupport().then(supported => {
+  useNativeCrypto = supported;
+  console.log(`Ed25519: ${supported ? 'Native Web Crypto' : 'WASM fallback'}`);
+});
+
+/**
+ * Generate keypair using native Web Crypto API
+ */
+async function generateNativeKeypair(): Promise<{ publicKey: Uint8Array; secretKey: Uint8Array }> {
+  const keyPair = await crypto.subtle.generateKey(
+    { name: 'Ed25519' },
+    true,
+    ['sign', 'verify']
+  );
+  
+  // Export public key as raw bytes (32 bytes)
+  const publicKeyBuffer = await crypto.subtle.exportKey('raw', keyPair.publicKey);
+  const publicKey = new Uint8Array(publicKeyBuffer);
+  
+  // Export private key as JWK to get the raw bytes
+  const privateJwk = await crypto.subtle.exportKey('jwk', keyPair.privateKey);
+  
+  // JWK 'd' contains the 32-byte seed, we need to combine seed + publicKey for 64-byte secretKey
+  const seedBytes = base64UrlDecode(privateJwk.d!);
+  
+  // Create 64-byte secret key (seed + publicKey) - Solana format
+  const secretKey = new Uint8Array(64);
+  secretKey.set(seedBytes, 0);
+  secretKey.set(publicKey, 32);
+  
+  return { publicKey, secretKey };
+}
+
+/**
+ * Decode base64url to Uint8Array
+ */
+function base64UrlDecode(base64url: string): Uint8Array {
+  const base64 = base64url.replace(/-/g, '+').replace(/_/g, '/');
+  const padding = '='.repeat((4 - base64.length % 4) % 4);
+  const binary = atob(base64 + padding);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes;
+}
 
 // Type definitions
 interface GeneratorConfig {
@@ -122,11 +187,21 @@ async function generateVanityAddress(config: GeneratorConfig): Promise<void> {
   while (isRunning) {
     // Process a batch of keys
     for (let i = 0; i < batchSize && isRunning; i++) {
-      // Generate random 32-byte seed using Web Crypto
-      const seed = crypto.getRandomValues(new Uint8Array(32));
+      let publicKey: Uint8Array;
+      let secretKey: Uint8Array;
       
-      // Derive keypair using WASM (fast!)
-      const { publicKey, secretKey } = await keyPairFromSeed(seed);
+      if (useNativeCrypto) {
+        // Use native Web Crypto API (fastest!)
+        const keypair = await generateNativeKeypair();
+        publicKey = keypair.publicKey;
+        secretKey = keypair.secretKey;
+      } else {
+        // Fall back to WASM
+        const seed = crypto.getRandomValues(new Uint8Array(32));
+        const keypair = await keyPairFromSeed(seed);
+        publicKey = keypair.publicKey;
+        secretKey = keypair.secretKey;
+      }
       
       const publicKeyBase58 = base58Encode(publicKey);
       attempts++;

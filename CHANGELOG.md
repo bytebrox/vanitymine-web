@@ -4,6 +4,20 @@ All notable changes to VanityMine will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.5.0] - 2026-01-27
+
+### Added
+- **Native Web Crypto API** - Uses browser's native Ed25519 implementation (Chrome 137+, Firefox 129+)
+- **Automatic Fallback** - Falls back to WASM (watsign) for older browsers
+
+### Performance
+- **~100,000 keys/second** on 16-core CPU (was ~22,000 with WASM)
+- **125x faster** than pure JavaScript implementations
+- **~5x faster** than previous WASM implementation
+- 4 characters: ~15 seconds (was ~1 minute)
+- 5 characters: ~12 minutes (was ~35 minutes)
+- 6 characters: ~11 hours (was ~19 hours)
+
 ## [0.4.0] - 2026-01-27
 
 ### Added

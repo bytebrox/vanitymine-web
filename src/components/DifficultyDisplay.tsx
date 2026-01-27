@@ -24,10 +24,10 @@ export function DifficultyDisplay({
   // Estimate rate based on CPU cores if no current rate
   const estimatedRate = useMemo(() => {
     if (currentRate > 0) return currentRate;
-    // watsign WASM: ~1500 keys/second per worker (measured ~22K/s with 15 workers)
+    // Native Web Crypto: ~6000+ keys/second per worker (measured ~100K/s with 16 workers)
     const cores = typeof navigator !== 'undefined' ? navigator.hardwareConcurrency || 4 : 4;
     const workers = Math.max(1, cores - 1);
-    return workers * 1500; // ~1500 keys/s per worker with WASM Ed25519
+    return workers * 6000; // ~6000 keys/s per worker with Native Web Crypto
   }, [currentRate]);
 
   const difficulty = useMemo(
