@@ -5,7 +5,8 @@
  * Solana vanity address generator
  */
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import {
   Navbar,
   Header,
@@ -18,14 +19,45 @@ import {
   Footer,
 } from '@/components';
 import { useGenerator } from '@/hooks/useGenerator';
-import { validatePrefix, validateSuffix } from '@/lib/validation';
+import { validatePrefix, validateSuffix, estimateDifficulty } from '@/lib/validation';
 
 export default function Home() {
   const { state, start, stop, reset, updateConfig, maxThreads } = useGenerator();
   const [showSecurityInfo, setShowSecurityInfo] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const searchParams = useSearchParams();
 
   const { status, config, stats, result } = state;
   const { prefix, suffix, caseSensitive, threads } = config;
+
+  // Load pattern from URL parameters on mount
+  useEffect(() => {
+    const urlPrefix = searchParams.get('prefix');
+    const urlSuffix = searchParams.get('suffix');
+    
+    if (urlPrefix || urlSuffix) {
+      if (urlPrefix) updateConfig({ prefix: urlPrefix });
+      if (urlSuffix) updateConfig({ suffix: urlSuffix });
+    }
+  }, [searchParams, updateConfig]);
+
+  // Calculate expected difficulty for progress bar
+  const expectedDifficulty = estimateDifficulty(prefix, suffix, caseSensitive);
+
+  // Generate share link
+  const generateShareLink = useCallback(() => {
+    const params = new URLSearchParams();
+    if (prefix) params.set('prefix', prefix);
+    if (suffix) params.set('suffix', suffix);
+    
+    const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+    const shareUrl = params.toString() ? `${baseUrl}/?${params.toString()}` : baseUrl;
+    
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }, [prefix, suffix]);
 
   // Check if input is valid for starting
   const prefixValid = validatePrefix(prefix, caseSensitive).valid;
@@ -79,8 +111,24 @@ export default function Home() {
                 disabled={status === 'running'}
               />
 
+              {/* Share pattern */}
+              {hasPattern && (
+                <div className="border-t border-ink/20 pt-6 mt-8">
+                  <button
+                    onClick={generateShareLink}
+                    disabled={status === 'running'}
+                    className="flex items-center gap-2 text-caption text-muted hover:text-ink transition-colors disabled:opacity-50"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                    </svg>
+                    {copied ? 'Link copied!' : 'Share this pattern'}
+                  </button>
+                </div>
+              )}
+
               {/* Security note */}
-              <div className="border-t border-ink/20 pt-6 mt-8">
+              <div className="border-t border-ink/20 pt-6 mt-4">
                 <p className="text-caption text-muted">
                   Your keys are generated entirely in your browser.{' '}
                   <button
@@ -114,8 +162,12 @@ export default function Home() {
                 disabled={!canStart}
               />
 
-              {/* Live stats */}
-              <StatsDisplay stats={stats} status={status} />
+              {/* Live stats with progress */}
+              <StatsDisplay 
+                stats={stats} 
+                status={status} 
+                expectedDifficulty={expectedDifficulty}
+              />
             </div>
           </div>
         )}

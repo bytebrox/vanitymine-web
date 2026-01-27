@@ -2,7 +2,7 @@
 
 /**
  * Live statistics display
- * Shows generation progress in real-time
+ * Shows generation progress in real-time with progress bar
  */
 
 import { GeneratorStats, GeneratorStatus } from '@/types';
@@ -11,11 +11,17 @@ import { formatNumber, formatRate, formatDuration } from '@/lib/format';
 interface StatsDisplayProps {
   stats: GeneratorStats;
   status: GeneratorStatus;
+  expectedDifficulty?: number;
 }
 
-export function StatsDisplay({ stats, status }: StatsDisplayProps) {
+export function StatsDisplay({ stats, status, expectedDifficulty = 1 }: StatsDisplayProps) {
   const { totalAttempts, attemptsPerSecond, elapsedTime, activeWorkers } = stats;
   const isActive = status !== 'idle';
+
+  // Calculate progress percentage (capped at 100% for display, but can go over)
+  const progressRaw = expectedDifficulty > 1 ? (totalAttempts / expectedDifficulty) * 100 : 0;
+  const progressDisplay = Math.min(progressRaw, 100);
+  const isOverExpected = progressRaw > 100;
 
   return (
     <div className={`bg-ink text-paper p-6 transition-opacity ${isActive ? 'opacity-100' : 'opacity-40'}`}>
@@ -62,7 +68,31 @@ export function StatsDisplay({ stats, status }: StatsDisplayProps) {
         </div>
       </div>
 
-      {/* Fixed height progress indicator area */}
+      {/* Progress bar */}
+      {status === 'running' && expectedDifficulty > 1 && (
+        <div className="mt-6 pt-4 border-t border-paper/20">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-micro text-paper/60">Statistical Progress</span>
+            <span className={`text-micro font-mono ${isOverExpected ? 'text-yellow-400' : 'text-paper/80'}`}>
+              {progressRaw.toFixed(1)}%
+            </span>
+          </div>
+          <div className="h-2 bg-paper/20 overflow-hidden">
+            <div 
+              className={`h-full transition-all duration-300 ${isOverExpected ? 'bg-yellow-400' : 'bg-accent'}`}
+              style={{ width: `${progressDisplay}%` }}
+            />
+          </div>
+          <p className="text-micro text-paper/40 mt-2">
+            {isOverExpected 
+              ? "Taking longer than average – this is normal, keep going!"
+              : `~${(100 - progressRaw).toFixed(0)}% of expected attempts remaining`
+            }
+          </p>
+        </div>
+      )}
+
+      {/* Mining indicator */}
       <div className="h-10 mt-4 pt-4 border-t border-paper/20">
         {status === 'running' && (
           <div className="flex items-center gap-2">
