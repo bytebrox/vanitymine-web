@@ -16,9 +16,9 @@ export function Navbar({ onHowItWorksClick }: NavbarProps) {
         <div className="flex items-center justify-between h-16">
           {/* Logo & Brand */}
           <div className="flex items-center gap-3">
-            {/* Logo - Simple geometric mark with accent */}
-            <div className="w-8 h-8 bg-accent flex items-center justify-center">
-              <span className="text-paper font-bold text-lg">V</span>
+            {/* Logo image on accent background */}
+            <div className="w-8 h-8 bg-accent flex items-center justify-center p-1">
+              <img src="/logo_w.png" alt="VanityMine" className="w-full h-full object-contain" />
             </div>
             <span className="font-bold text-title tracking-tight">VanityMine</span>
           </div>

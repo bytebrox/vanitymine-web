@@ -40,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
         <meta name="theme-color" content="#F7F5F0" />
       </head>
       <body className="min-h-screen flex flex-col">{children}</body>
