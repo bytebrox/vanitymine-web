@@ -17,10 +17,10 @@ export function Navbar({ onHowItWorksClick }: NavbarProps) {
           {/* Logo & Brand */}
           <div className="flex items-center gap-3">
             {/* Logo image on accent background */}
-            <div className="w-10 h-10 bg-accent flex items-center justify-center rounded-sm overflow-hidden">
-              <img src="/logo_w.png" alt="VanityMine" className="w-full h-full object-cover" />
+            <div className="w-11 h-11 bg-accent flex items-center justify-center rounded overflow-hidden p-1.5">
+              <img src="/logo_w.png" alt="VanityMine" className="w-full h-full object-contain" />
             </div>
-            <span className="font-bold text-title tracking-tight">VanityMine</span>
+            <span className="font-bold text-xl tracking-tight">VanityMine</span>
           </div>
 
           {/* Navigation Links */}
