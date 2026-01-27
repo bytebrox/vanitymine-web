@@ -2,13 +2,20 @@
 
 /**
  * Hero section component
- * Swiss/Editorial style - Full width
+ * Swiss/Editorial style - Full width with background image
  */
 
 export function Header() {
   return (
-    <header className="border-b-2 border-ink">
-      <div className="px-6 md:px-12 lg:px-20">
+    <header className="border-b-2 border-ink relative">
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+        style={{ backgroundImage: 'url(/hero.png)' }}
+      />
+      
+      {/* Content */}
+      <div className="relative px-6 md:px-12 lg:px-20">
         {/* Top rule */}
         <div className="border-b border-ink py-3 flex justify-between items-center text-micro uppercase tracking-widest text-muted">
           <span>Est. 2026</span>
