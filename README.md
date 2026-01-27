@@ -77,12 +77,71 @@ You don't have to trust us – you can verify it yourself:
 4. **Result** – When a match is found, you receive the complete keypair
 5. **Export** – Download your keys in your preferred format
 
-### Technical Details
+## Architecture
 
-- **Cryptography**: Ed25519 elliptic curve (same as Solana)
-- **Random Source**: `crypto.getRandomValues()` (cryptographically secure)
-- **WASM Engine**: watsign (TweetNaCl ported to WebAssembly)
-- **Parallelization**: Web Workers (one per CPU core)
+### Where Does the Code Run?
+
+**Important:** All computation happens in your browser, not on any server.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         YOUR BROWSER                            │
+│  ┌───────────────┐    ┌──────────────────────────────────────┐  │
+│  │   Main Thread │    │          Web Workers (WASM)          │  │
+│  │   (UI/React)  │───▶│  Worker 1 │ Worker 2 │ ... │ Worker N│  │
+│  └───────────────┘    │  (Ed25519)│ (Ed25519)│     │(Ed25519)│  │
+│                       └──────────────────────────────────────┘  │
+│                                 ▼                               │
+│                         Keys generated locally                  │
+│                         using YOUR CPU cores                    │
+└─────────────────────────────────────────────────────────────────┘
+                                 ▲
+                                 │ Static files only (HTML/JS/CSS)
+                                 │ No computation, no key access
+┌─────────────────────────────────────────────────────────────────┐
+│                    HOSTING (Vercel/GitHub)                      │
+│                    Just a static file server                    │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+The hosting platform (Vercel) only delivers static files. Once loaded:
+- Your browser executes all JavaScript locally
+- Web Workers run on your CPU cores, not on any server
+- Performance depends on your hardware, not server capacity
+- The app works completely offline
+
+### Web Workers Explained
+
+Web Workers are a **browser API** – they are JavaScript threads that run inside your browser, utilizing your local CPU. They are **not** server-side processes.
+
+- Each worker runs independently in a separate thread
+- Workers use your CPU cores for parallel computation
+- Communication happens via message passing (postMessage)
+- Zero network traffic during key generation
+
+This is fundamentally different from server-based generation where keys would be computed remotely. With VanityMine, keys are born and stay local.
+
+### Technical Stack
+
+| Component | Technology | Purpose |
+|-----------|------------|---------|
+| **Frontend** | Next.js 16 / React 19 | UI and state management |
+| **Cryptography** | watsign (WASM) | Ed25519 key generation |
+| **Parallelization** | Web Workers | Multi-core CPU utilization |
+| **Randomness** | Web Crypto API | Cryptographically secure RNG |
+| **Encoding** | Custom Base58 | Solana address format |
+| **Bundling** | esbuild | Worker compilation |
+
+### WASM Performance
+
+The cryptographic operations use **watsign** – a WebAssembly port of TweetNaCl's Ed25519 implementation:
+
+- Runs at near-native speed inside the browser
+- ~1,500 keys/second per CPU core
+- ~22,000 keys/second on a 16-core machine
+- Same algorithm used by @solana/web3.js
+
+WebAssembly is a binary instruction format that browsers execute at near-native speed. It's sandboxed and secure – it can't access your filesystem or network directly.
 
 ## Wallet Compatibility
 
