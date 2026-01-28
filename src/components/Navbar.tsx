@@ -39,7 +39,13 @@ export function Navbar({ onHowItWorksClick }: NavbarProps) {
               href="/"
               className="text-muted hover:text-ink transition-colors"
             >
-              Home
+              Wallet
+            </a>
+            <a
+              href="/token"
+              className="text-muted hover:text-ink transition-colors"
+            >
+              Token Mint
             </a>
             <button
               onClick={onHowItWorksClick}
@@ -102,7 +108,13 @@ export function Navbar({ onHowItWorksClick }: NavbarProps) {
               href="/"
               className="block py-2 text-body text-muted hover:text-ink transition-colors"
             >
-              Home
+              Wallet Generator
+            </a>
+            <a
+              href="/token"
+              className="block py-2 text-body text-muted hover:text-ink transition-colors"
+            >
+              Token Mint Generator
             </a>
             <button
               onClick={handleHowItWorksClick}

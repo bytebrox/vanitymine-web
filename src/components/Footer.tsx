@@ -28,12 +28,28 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Resources */}
+          {/* Generators */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider mb-4 sm:mb-6">
-              Resources
+              Generators
             </h4>
             <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base">
+              <li>
+                <a
+                  href="/"
+                  className="text-paper/70 hover:text-paper transition-colors"
+                >
+                  Wallet Address
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/token"
+                  className="text-paper/70 hover:text-paper transition-colors"
+                >
+                  Token Mint Address
+                </a>
+              </li>
               <li>
                 <a
                   href="/faq"

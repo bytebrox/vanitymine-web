@@ -4,6 +4,20 @@ All notable changes to VanityMine will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.6.0] - 2026-01-28
+
+### Added
+- **Token Mint Generator** - New `/token` page for generating vanity token contract addresses
+- **pump.fun Integration** - Step-by-step instructions for using generated keys with pump.fun
+- **Token-specific Result Display** - Customized output with token deployment instructions
+- **Navigation Updates** - Added "Wallet" and "Token Mint" links to navbar and footer
+
+### Features
+- Generate custom token addresses for Solana token launches
+- Compatible with pump.fun, Raydium, and other launchers
+- Dedicated header and UI optimized for token creation workflow
+- Download includes pump.fun usage instructions
+
 ## [0.5.0] - 2026-01-27
 
 ### Added

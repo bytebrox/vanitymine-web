@@ -1,8 +1,15 @@
 # VanityMine
 
-**Generate custom Solana wallet addresses – entirely in your browser.**
+**Generate custom Solana addresses – entirely in your browser.**
 
-Create personalized Solana addresses that start or end with specific characters (like `SOL...` or `...MOON`). All cryptographic operations happen locally on your device – your private keys never leave your browser.
+Create personalized Solana wallet addresses and token mint addresses that start or end with specific characters (like `SOL...` or `...MOON`). All cryptographic operations happen locally on your device – your private keys never leave your browser.
+
+## Two Generators
+
+| Generator | Use Case | URL |
+|-----------|----------|-----|
+| **Wallet Address** | Personal wallets, donations, branding | `/` |
+| **Token Mint Address** | pump.fun token launches, custom token contracts | `/token` |
 
 ## What is a Vanity Address?
 
@@ -18,6 +25,7 @@ This makes addresses more memorable and personal – perfect for public wallets,
 - **100% Client-Side** – All computation happens in your browser
 - **125x Faster** – Native Web Crypto API outperforms all JavaScript/WASM implementations
 - **Multi-Core Processing** – Uses all available CPU cores (~100,000 keys/second)
+- **Token Mint Generator** – Create vanity addresses for pump.fun token launches
 - **Sound Notification** – Optional audio alert when address is found
 - **Instant Export** – Download keys as TXT or JSON (Solana CLI compatible)
 - **Works Offline** – No internet required after page loads
@@ -155,6 +163,24 @@ Generated keypairs work with all major Solana wallets:
 | **Solflare** | Import Private Key or JSON |
 | **Backpack** | Import Private Key |
 | **Solana CLI** | Import JSON file directly |
+
+## Token Mint Generator (pump.fun)
+
+Create custom token contract addresses for your Solana token launches:
+
+### How It Works
+
+1. Go to `/token` and generate a vanity address
+2. Copy the **Private Key** (Base58 format)
+3. On pump.fun, paste the key in "Token Address" → "Use Custom"
+4. Launch your token with your custom address!
+
+### Important Notes
+
+- The private key is only needed **once** during token creation
+- After launch, the token address becomes public and permanent
+- Your token's contract address will match your vanity pattern (e.g., `DOGE...`, `MOON...`)
+- Works with pump.fun, Raydium, and other Solana token launchers
 
 ## FAQ
 
