@@ -16,11 +16,21 @@ export const metadata: Metadata = {
     description:
       'Frequently asked questions about VanityMine. Learn about security, performance, and how to generate vanity addresses.',
     url: 'https://vanitymine.com/faq',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'VanityMine FAQ',
+      },
+    ],
   },
   twitter: {
+    card: 'summary_large_image',
     title: 'FAQ | VanityMine',
     description:
       'Frequently asked questions about VanityMine Solana vanity address generator.',
+    images: ['/og-image.png'],
   },
   alternates: {
     canonical: 'https://vanitymine.com/faq',

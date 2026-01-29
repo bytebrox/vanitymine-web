@@ -32,6 +32,14 @@ export const metadata: Metadata = {
     siteName: 'VanityMine',
     type: 'website',
     locale: 'en_US',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'VanityMine - Solana Vanity Address Generator',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -39,6 +47,7 @@ export const metadata: Metadata = {
     description:
       'Generate custom Solana wallet and token addresses. Perfect for pump.fun launches.',
     site: '@vanitymine',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,

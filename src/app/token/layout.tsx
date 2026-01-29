@@ -19,11 +19,21 @@ export const metadata: Metadata = {
     description:
       'Generate custom Solana token addresses for pump.fun launches. Create memorable token mints.',
     url: 'https://vanitymine.com/token',
+    images: [
+      {
+        url: '/og-token.png',
+        width: 1200,
+        height: 630,
+        alt: 'VanityMine Token Mint Generator for pump.fun',
+      },
+    ],
   },
   twitter: {
+    card: 'summary_large_image',
     title: 'Token Mint Generator | VanityMine',
     description:
       'Generate custom Solana token addresses for pump.fun launches.',
+    images: ['/og-token.png'],
   },
   alternates: {
     canonical: 'https://vanitymine.com/token',
