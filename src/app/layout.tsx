@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://vanitymine.com'),
   title: 'VanityMine | Solana Vanity Address Generator',
   description:
-    'Generate custom Solana addresses with your desired prefix or suffix. 100% client-side, open source, and secure.',
+    'Generate custom Solana wallet addresses and token mint addresses. Create vanity addresses for pump.fun token launches. 100% client-side, open source, and secure.',
   keywords: [
     'solana',
     'vanity address',
@@ -14,6 +14,12 @@ export const metadata: Metadata = {
     'address generator',
     'blockchain',
     'vanitymine',
+    'token mint',
+    'pump.fun',
+    'solana token',
+    'custom address',
+    'sol domain',
+    'solana naming service',
   ],
   authors: [{ name: 'VanityMine', url: 'https://vanitymine.com' }],
   creator: 'VanityMine',
@@ -21,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'VanityMine | Solana Vanity Address Generator',
     description:
-      'Generate custom Solana addresses with your desired prefix or suffix. 100% client-side and secure.',
+      'Generate custom Solana wallet and token addresses. Perfect for pump.fun launches. 100% client-side and secure.',
     url: 'https://vanitymine.com',
     siteName: 'VanityMine',
     type: 'website',
@@ -31,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'VanityMine | Solana Vanity Address Generator',
     description:
-      'Generate custom Solana addresses with your desired prefix or suffix.',
+      'Generate custom Solana wallet and token addresses. Perfect for pump.fun launches.',
     site: '@vanitymine',
   },
   robots: {
