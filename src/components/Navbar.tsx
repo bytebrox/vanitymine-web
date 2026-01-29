@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { CommunityStats } from './CommunityStats';
 
 /**
  * Navigation bar component
@@ -32,6 +33,9 @@ export function Navbar({ onHowItWorksClick }: NavbarProps) {
             </div>
             <span className="font-bold text-lg sm:text-xl tracking-tight">VanityMine</span>
           </a>
+
+          {/* Community Stats - Desktop only */}
+          <CommunityStats />
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-6 text-caption">

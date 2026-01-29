@@ -11,3 +11,4 @@ export { ResultDisplay } from './ResultDisplay';
 export { GeneratorControls } from './GeneratorControls';
 export { SecurityInfo } from './SecurityInfo';
 export { Footer } from './Footer';
+export { CommunityStats, reportStats } from './CommunityStats';

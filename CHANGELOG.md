@@ -4,6 +4,27 @@ All notable changes to VanityMine will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.7.0] - 2026-01-29
+
+### Added
+- **Community Stats** - Live global statistics showing total keys tested and addresses found
+- **Upstash Redis Integration** - Serverless database for anonymous community statistics
+- **FAQ Updates** - Added Token Mint category with 6 new questions
+- **How it Works Updates** - Added Token Mint Generator section with pump.fun instructions
+
+### Features
+- Real-time community stats displayed in navbar
+- Stats update automatically when addresses are found
+- Numbers formatted with K/M/B/T suffixes for readability
+- Stats refresh every 30 seconds
+
+### Privacy & Transparency
+- **Only two numbers are stored:** `totalAttempts` and `totalFound` - nothing else
+- **No IP addresses, no keys, no patterns, no personal data**
+- **Fully verifiable:** Check the Network tab - only `/api/stats` is called with `{ attempts: number }`
+- **Open source:** The API route code is visible at `src/app/api/stats/route.ts`
+- Your private keys never leave your browser - the stats API only receives a count
+
 ## [0.6.0] - 2026-01-28
 
 ### Added

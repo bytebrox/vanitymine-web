@@ -43,6 +43,43 @@ const faqs: FAQItem[] = [
     question: 'Why can\'t I use certain characters like 0, O, I, or l?',
     answer: 'Solana addresses use Base58 encoding, which deliberately excludes characters that look similar to avoid confusion. This means 0 (zero), O (capital o), I (capital i), and l (lowercase L) are not valid.',
   },
+  {
+    category: 'General',
+    question: 'What\'s the difference between Wallet and Token Mint generator?',
+    answer: 'The Wallet generator creates vanity addresses for your personal wallet. The Token Mint generator creates vanity addresses for token contracts - useful when launching tokens on pump.fun or other platforms. Technically they\'re identical (both Ed25519 keypairs), but the usage is different.',
+  },
+
+  // Token Mint
+  {
+    category: 'Token Mint',
+    question: 'What is a Token Mint address?',
+    answer: 'A Token Mint address is the contract address of a token on Solana. When you launch a token, this address becomes permanent and public - it\'s what people see on DEXScreener, Birdeye, and other platforms.',
+  },
+  {
+    category: 'Token Mint',
+    question: 'How do I use the generated key with pump.fun?',
+    answer: 'After generating a token address: 1) Copy the Private Key, 2) On pump.fun, find the "Token Address" section, 3) Paste the private key and click "Use Custom", 4) Complete your token launch. Your token will have your custom vanity address!',
+  },
+  {
+    category: 'Token Mint',
+    question: 'Does the token address need to end with "pump"?',
+    answer: 'No! That\'s a common misconception. You can use any vanity pattern you like - DOGE, MOON, your project name, etc. The "pump" suffix some tokens have is just marketing, not a technical requirement.',
+  },
+  {
+    category: 'Token Mint',
+    question: 'Can someone steal my token address before I launch?',
+    answer: 'No. Your token address is protected by the private key. Without the private key, nobody can deploy a token to that address. As long as you keep your private key secret until you use it, the address is yours.',
+  },
+  {
+    category: 'Token Mint',
+    question: 'Do I need to keep the private key after launching?',
+    answer: 'No. The private key is only used once during token creation. After your token is deployed, the token address becomes public and permanent. You don\'t need to store the mint keypair - it served its purpose.',
+  },
+  {
+    category: 'Token Mint',
+    question: 'Does this work with other launchers besides pump.fun?',
+    answer: 'Yes! The generated keypairs work with any Solana token launcher that supports custom mint addresses, including Raydium, Jupiter Launch, and others. The key format is standard Solana.',
+  },
 
   // Security
   {
@@ -54,6 +91,16 @@ const faqs: FAQItem[] = [
     category: 'Security',
     question: 'Do you store my private keys?',
     answer: 'No. We have no database, no backend processing, and no way to access your keys. The entire application runs client-side in your browser. Once you close the page, the keys exist only where you saved them.',
+  },
+  {
+    category: 'Security',
+    question: 'What about the Community Stats - what data do you collect?',
+    answer: 'The Community Stats store exactly TWO numbers: total attempts and total found addresses. That\'s it. No IP addresses, no keys, no patterns, no timestamps, no user identifiers. When you find an address, we send ONE number (your attempt count) to increment the counter. You can verify this in the Network tab - the request is just { "attempts": 12345 }.',
+  },
+  {
+    category: 'Security',
+    question: 'How can I verify you\'re not secretly storing my data?',
+    answer: 'Open Developer Tools (F12) → Network tab → Generate an address. You\'ll see: 1) NO requests during generation (keys are local), 2) ONE request to /api/stats when found (only contains attempt count). The API code is open source at src/app/api/stats/route.ts - we physically cannot store what we don\'t receive.',
   },
   {
     category: 'Security',

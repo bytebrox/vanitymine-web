@@ -15,6 +15,7 @@ import {
   GeneratorControls,
   SecurityInfo,
   Footer,
+  reportStats,
 } from '@/components';
 import { TokenHeader } from './TokenHeader';
 import { TokenResultDisplay } from './TokenResultDisplay';
@@ -33,10 +34,12 @@ export function TokenContent() {
   const { status, config, stats, result } = state;
   const { prefix, suffix, caseSensitive, threads } = config;
 
-  // Play sound when result is found
+  // Play sound and report stats when result is found
   useEffect(() => {
     if (result && result !== prevResultRef.current) {
       playSuccessSound();
+      // Report to community stats
+      reportStats(result.attempts);
     }
     prevResultRef.current = result;
   }, [result, playSuccessSound]);
@@ -154,16 +157,19 @@ export function TokenContent() {
               </div>
 
               {/* Security note */}
-              <div className="border-t border-ink/20 pt-6 mt-4">
+              <div className="border-t border-ink/20 pt-6 mt-4 space-y-2">
                 <p className="text-caption text-muted">
-                  Your keys are generated entirely in your browser.{' '}
-                  <button
-                    onClick={() => setShowSecurityInfo(true)}
-                    className="text-accent hover:underline underline-offset-2"
-                  >
-                    Learn more →
-                  </button>
+                  <span className="text-accent">✓</span> Keys generated 100% in your browser – never sent anywhere
                 </p>
+                <p className="text-caption text-muted">
+                  <span className="text-accent">✓</span> Community stats store only 2 numbers – no IPs, no keys, no tracking
+                </p>
+                <button
+                  onClick={() => setShowSecurityInfo(true)}
+                  className="text-caption text-accent hover:underline underline-offset-2"
+                >
+                  Verify it yourself →
+                </button>
               </div>
             </div>
 

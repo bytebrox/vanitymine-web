@@ -209,6 +209,75 @@ export function SecurityInfo({ isOpen, onClose }: SecurityInfoProps) {
             </ul>
           </section>
 
+          {/* Community Stats Transparency */}
+          <section className="bg-blue-50 border-l-4 border-blue-500 p-3 sm:p-4">
+            <h3 className="text-xs sm:text-caption font-bold uppercase tracking-wider text-blue-700 mb-2 sm:mb-3">
+              Community Stats – Full Transparency
+            </h3>
+            <div className="space-y-2 sm:space-y-3 text-sm sm:text-body text-blue-900">
+              <p>
+                <strong>We display community statistics. Here's exactly what we store:</strong>
+              </p>
+              <div className="grid grid-cols-2 gap-2 text-xs sm:text-micro">
+                <div className="bg-white/50 p-2 rounded">
+                  <p className="font-bold text-green-700 mb-1">✓ What IS stored:</p>
+                  <ul className="space-y-0.5">
+                    <li>• totalAttempts (one number)</li>
+                    <li>• totalFound (one number)</li>
+                  </ul>
+                </div>
+                <div className="bg-white/50 p-2 rounded">
+                  <p className="font-bold text-red-700 mb-1">✗ What is NOT stored:</p>
+                  <ul className="space-y-0.5">
+                    <li>• No IP addresses</li>
+                    <li>• No keys (public or private)</li>
+                    <li>• No patterns searched</li>
+                    <li>• No user identifiers</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="bg-white/50 p-2 rounded text-xs sm:text-micro">
+                <p className="font-bold mb-1">How to verify:</p>
+                <ol className="list-decimal list-inside space-y-0.5">
+                  <li>Open DevTools (F12) → Network tab</li>
+                  <li>Generate an address</li>
+                  <li>When found, see the ONE request to /api/stats</li>
+                  <li>Click it: payload is just {"{"} "attempts": 12345 {"}"}</li>
+                </ol>
+              </div>
+              <p className="text-xs sm:text-micro text-blue-700">
+                The API code is open source. We physically cannot store what we don't receive.
+              </p>
+            </div>
+          </section>
+
+          {/* Token Mint Generator */}
+          <section className="bg-purple-50 border-l-4 border-purple-500 p-3 sm:p-4">
+            <h3 className="text-xs sm:text-caption font-bold uppercase tracking-wider text-purple-700 mb-2 sm:mb-3">
+              Token Mint Generator
+            </h3>
+            <div className="space-y-2 sm:space-y-3 text-sm sm:text-body text-purple-900">
+              <p>
+                <strong>Create custom token addresses for your Solana token launches.</strong> The 
+                Token Mint generator creates vanity addresses that become your token's contract address 
+                on pump.fun, Raydium, or any other launcher.
+              </p>
+              <div className="bg-white/50 p-2 sm:p-3 rounded">
+                <p className="font-bold text-xs sm:text-caption mb-2">How to use with pump.fun:</p>
+                <ol className="text-xs sm:text-micro space-y-1 list-decimal list-inside">
+                  <li>Go to <strong>/token</strong> and generate your vanity address</li>
+                  <li>Copy the <strong>Private Key</strong> (not the public address)</li>
+                  <li>On pump.fun, paste it in "Token Address" → "Use Custom"</li>
+                  <li>Launch your token with your custom address!</li>
+                </ol>
+              </div>
+              <p className="text-xs sm:text-micro text-purple-700">
+                The private key is only needed once during token creation. After launch, 
+                the token address is public and permanent.
+              </p>
+            </div>
+          </section>
+
           {/* Warning */}
           <section className="bg-yellow-50 border border-yellow-200 p-3 sm:p-4">
             <h3 className="text-xs sm:text-caption font-bold uppercase tracking-wider text-yellow-800 mb-1.5 sm:mb-2">

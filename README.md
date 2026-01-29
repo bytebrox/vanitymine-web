@@ -79,6 +79,31 @@ You don't have to trust us – you can verify it yourself:
 3. Inspect `vanity-worker.js` – all crypto logic is visible
 4. Or review the full source code in this repository
 
+### Community Stats – What We Store
+
+VanityMine displays live community statistics (total keys tested, addresses found). Here's exactly what happens:
+
+**What IS stored (anonymously):**
+- `totalAttempts` – A single number counting all attempts across all users
+- `totalFound` – A single number counting all found addresses
+
+**What is NOT stored:**
+- ❌ No IP addresses
+- ❌ No private keys
+- ❌ No public keys
+- ❌ No patterns searched
+- ❌ No timestamps
+- ❌ No user identifiers
+- ❌ No cookies or tracking
+
+**How to verify:**
+1. Open Developer Tools (F12) → Network tab
+2. Generate an address
+3. When found, you'll see ONE request to `/api/stats`
+4. Click it and inspect the payload: `{ "attempts": 12345 }` – just a number!
+
+The API source code is fully visible at `src/app/api/stats/route.ts`. We physically cannot store what we don't receive.
+
 ## How It Works
 
 1. **Input** – Enter your desired prefix and/or suffix pattern
