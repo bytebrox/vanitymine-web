@@ -1,0 +1,15 @@
+# Codacy Configuration
+# https://docs.codacy.com/repositories-configure/codacy-configuration-file/
+
+---
+exclude_paths:
+  # Generated/bundled files (contain third-party library code)
+  - "public/vanity-worker.js"
+  
+  # Build outputs
+  - ".next/**"
+  - "node_modules/**"
+  - "coverage/**"
+  
+  # Lock files
+  - "package-lock.json"
