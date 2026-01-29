@@ -92,6 +92,6 @@ jobs:
         if: github.event_name == 'push'
         uses: treosh/lighthouse-ci-action@v11
         with:
-          urls: https://vanitymine.vercel.app
+          urls: https://www.vanitymine.com
           uploadArtifacts: true
           temporaryPublicStorage: true
