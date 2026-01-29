@@ -1,5 +1,10 @@
 # VanityMine
 
+[![CI](https://github.com/bytebrox/vanitymine-web/actions/workflows/ci.yml/badge.svg)](https://github.com/bytebrox/vanitymine-web/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/bytebrox/vanitymine-web/actions/workflows/codeql.yml/badge.svg)](https://github.com/bytebrox/vanitymine-web/actions/workflows/codeql.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Security Policy](https://img.shields.io/badge/Security-Policy-blue.svg)](SECURITY.md)
+
 **Generate custom Solana addresses – entirely in your browser.**
 
 Create personalized Solana wallet addresses and token mint addresses that start or end with specific characters (like `SOL...` or `...MOON`). All cryptographic operations happen locally on your device – your private keys never leave your browser.

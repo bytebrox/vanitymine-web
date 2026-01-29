@@ -4,6 +4,19 @@ All notable changes to VanityMine will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.9.2] - 2026-01-29
+
+### Added
+- **GitHub Actions CI** - Automated build, lint, and security checks
+- **CodeQL Analysis** - GitHub's security scanner for vulnerability detection
+- **Dependabot** - Automatic dependency security updates
+- **SECURITY.md** - Formal security policy (GitHub shows security badge)
+- **CONTRIBUTING.md** - Contribution guidelines
+- **CODE_OF_CONDUCT.md** - Community standards
+- **README Badges** - CI status, CodeQL, License, Security Policy
+
+---
+
 ## [0.9.1] - 2026-01-29
 
 ### Security
