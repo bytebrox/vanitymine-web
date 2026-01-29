@@ -168,8 +168,14 @@ export function Footer() {
             <a href="https://app.codacy.com/gh/bytebrox/vanitymine-web/dashboard" target="_blank" rel="noopener noreferrer">
               <img src="https://app.codacy.com/project/badge/Grade/87604c4f215b425290fdc373a1c69b00" alt="Codacy" className="h-5" />
             </a>
+            <a href="https://socket.dev" target="_blank" rel="noopener noreferrer">
+              <img src="https://img.shields.io/badge/Socket.dev-Protected-blue.svg" alt="Socket.dev" className="h-5" />
+            </a>
             <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">
               <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License" className="h-5" />
+            </a>
+            <a href="https://github.com/bytebrox/vanitymine-web/security/policy" target="_blank" rel="noopener noreferrer">
+              <img src="https://img.shields.io/badge/Security-Policy-blue.svg" alt="Security Policy" className="h-5" />
             </a>
           </div>
         </div>
