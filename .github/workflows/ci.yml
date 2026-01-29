@@ -34,7 +34,7 @@ jobs:
         run: npm run build
 
       - name: Lint
-        run: npm run lint
+        run: npx eslint src/ --max-warnings 0
 
   security:
     name: Security Scan
