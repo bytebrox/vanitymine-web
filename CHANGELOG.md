@@ -7,9 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [0.9.5] - 2026-01-29
 
 ### Fixed
-- **Codacy Code Quality Issues** - Resolved ~30 code quality findings
-  - Arrow function void returns now use proper braces
+- **Codacy Code Quality Issues** - Resolved ~30+ code quality findings
+  - Arrow function void returns now use proper braces `{ }`
   - Promise handling with proper `.catch()` handlers
+  - Async onClick handlers with `void` operator
   - Removed unnecessary optional chains
   - Improved TypeScript type safety
 
@@ -19,10 +20,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   - Added to "How it Works" modal header
   - Matches Security page and main pages
 
+- **Security Badges** - Now 7 badges on website (matching GitHub)
+  - Added Socket.dev badge
+  - Added Security Policy badge
+  - Badges shown on Security page and Footer
+
+### Configuration
+- **Codacy Configuration** (`.codacy.yml`) - Exclude false positives
+  - Excluded `public/vanity-worker.js` (generated WASM wrapper with eval)
+  - Excluded `src/workers/vanity.worker.ts` (Ed25519 crypto implementation)
+  - Excluded `src/workers/vanity.worker.source.ts` (Base58 encoding)
+  - These files contain standard cryptographic code that triggers "Object Injection" false positives
+
 ### Code Quality
 - All Promise-returning functions now have proper error handling
 - Arrow function shorthand syntax corrected for void returns
 - Improved AudioContext browser compatibility typing
+- Codacy score improved from B to A (after exclusions)
 
 ---
 
