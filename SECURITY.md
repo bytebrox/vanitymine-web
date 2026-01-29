@@ -64,6 +64,8 @@ We run continuous security checks on every push and pull request:
 |------|---------|--------------|
 | **Dependabot** | Daily + on vulnerability | Auto-creates PRs for security updates |
 | **CodeQL** | Every push/PR + weekly | Semantic code analysis for vulnerabilities |
+| **Codacy** | Every push/PR | Automated code quality and security review |
+| **Snyk** | Continuous | Real-time dependency vulnerability monitoring |
 | **npm audit** | Every push/PR | Scans for known CVEs in dependencies |
 | **Lighthouse CI** | Every push/PR | Performance, accessibility, best practices |
 
@@ -71,6 +73,8 @@ We run continuous security checks on every push and pull request:
 - [CI Status](https://github.com/bytebrox/vanitymine-web/actions/workflows/ci.yml)
 - [CodeQL Scans](https://github.com/bytebrox/vanitymine-web/security/code-scanning)
 - [Dependabot Alerts](https://github.com/bytebrox/vanitymine-web/security/dependabot)
+- [Codacy Dashboard](https://app.codacy.com/gh/bytebrox/vanitymine-web/dashboard)
+- [Snyk Report](https://snyk.io/test/github/bytebrox/vanitymine-web)
 
 ### Cryptography
 | Component | Implementation | Standard |

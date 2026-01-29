@@ -58,7 +58,7 @@ export function PatternInput({
             id="prefix"
             type="text"
             value={prefix}
-            onChange={(e) => onPrefixChange(e.target.value)}
+            onChange={(e) => { onPrefixChange(e.target.value); }}
             placeholder="e.g., Sol"
             maxLength={8}
             disabled={disabled}
@@ -86,7 +86,7 @@ export function PatternInput({
             id="suffix"
             type="text"
             value={suffix}
-            onChange={(e) => onSuffixChange(e.target.value)}
+            onChange={(e) => { onSuffixChange(e.target.value); }}
             placeholder="e.g., xyz"
             maxLength={8}
             disabled={disabled}
@@ -109,7 +109,7 @@ export function PatternInput({
           id="caseSensitive"
           type="checkbox"
           checked={caseSensitive}
-          onChange={(e) => onCaseSensitiveChange(e.target.checked)}
+          onChange={(e) => { onCaseSensitiveChange(e.target.checked); }}
           disabled={disabled}
           className="w-5 h-5 border-2 border-ink rounded-none accent-ink cursor-pointer disabled:opacity-50"
         />

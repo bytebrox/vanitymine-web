@@ -42,9 +42,13 @@ Policy: https://github.com/bytebrox/vanitymine-web/security/policy
 # ============================================
 # - Dependabot: Automatic dependency security updates
 # - CodeQL: Static code analysis on every push
+# - Codacy: Automated code quality and security review
+# - Snyk: Real-time dependency vulnerability monitoring
 # - npm audit: CVE scanning in CI pipeline
 # - Lighthouse CI: Performance and best practices
 # - All checks public: https://github.com/bytebrox/vanitymine-web/actions
+# - Codacy Dashboard: https://app.codacy.com/gh/bytebrox/vanitymine-web/dashboard
+# - Snyk Report: https://snyk.io/test/github/bytebrox/vanitymine-web
 
 # ============================================
 # SECURITY HEADERS

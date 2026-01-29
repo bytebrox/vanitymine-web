@@ -23,12 +23,16 @@ export function SecurityInfo({ isOpen, onClose }: SecurityInfoProps) {
 
       {/* Modal */}
       <div className="relative bg-paper max-w-2xl w-full max-h-[90vh] sm:max-h-[80vh] overflow-y-auto border-2 border-ink">
-        {/* Header */}
-        <div className="sticky top-0 bg-ink text-paper p-4 sm:p-grid flex items-center justify-between">
-          <h2 className="text-lg sm:text-title font-bold">How VanityMine Works</h2>
+        {/* Header with background image */}
+        <div className="sticky top-0 bg-ink text-paper p-4 sm:p-grid flex items-center justify-between relative overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
+            style={{ backgroundImage: 'url(/hero.png)' }}
+          />
+          <h2 className="text-lg sm:text-title font-bold relative z-10">How VanityMine Works</h2>
           <button
             onClick={onClose}
-            className="text-2xl hover:opacity-70 p-1"
+            className="text-2xl hover:opacity-70 p-1 relative z-10"
             aria-label="Close"
           >
             ×

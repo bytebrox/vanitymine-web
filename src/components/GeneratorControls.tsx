@@ -51,7 +51,7 @@ export function GeneratorControls({
         </label>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => onThreadsChange(Math.max(1, threads - 1))}
+            onClick={() => { onThreadsChange(Math.max(1, threads - 1)); }}
             disabled={isRunning || threads <= 1}
             className="w-8 h-8 border-2 border-ink flex items-center justify-center
                        hover:bg-ink hover:text-paper disabled:opacity-30 disabled:cursor-not-allowed"
@@ -60,7 +60,7 @@ export function GeneratorControls({
           </button>
           <span className="w-12 text-center font-mono text-title">{threads}</span>
           <button
-            onClick={() => onThreadsChange(Math.min(maxThreads, threads + 1))}
+            onClick={() => { onThreadsChange(Math.min(maxThreads, threads + 1)); }}
             disabled={isRunning || threads >= maxThreads}
             className="w-8 h-8 border-2 border-ink flex items-center justify-center
                        hover:bg-ink hover:text-paper disabled:opacity-30 disabled:cursor-not-allowed"

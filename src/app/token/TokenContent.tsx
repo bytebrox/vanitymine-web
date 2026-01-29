@@ -69,8 +69,8 @@ export function TokenContent() {
     
     navigator.clipboard.writeText(shareUrl).then(() => {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
+      setTimeout(() => { setCopied(false); }, 2000);
+    }).catch(() => { /* Clipboard access denied */ });
   }, [prefix, suffix]);
 
   // Check if input is valid for starting
@@ -94,7 +94,7 @@ export function TokenContent() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Navigation */}
-      <Navbar onHowItWorksClick={() => setShowSecurityInfo(true)} />
+      <Navbar onHowItWorksClick={() => { setShowSecurityInfo(true); }} />
 
       {/* Header */}
       <TokenHeader />
@@ -165,7 +165,7 @@ export function TokenContent() {
                   <span className="text-accent">✓</span> Community stats store only 2 numbers – no IPs, no keys, no tracking
                 </p>
                 <button
-                  onClick={() => setShowSecurityInfo(true)}
+                  onClick={() => { setShowSecurityInfo(true); }}
                   className="text-caption text-accent hover:underline underline-offset-2"
                 >
                   Verify it yourself →
@@ -213,7 +213,7 @@ export function TokenContent() {
       {/* Security info modal */}
       <SecurityInfo
         isOpen={showSecurityInfo}
-        onClose={() => setShowSecurityInfo(false)}
+        onClose={() => { setShowSecurityInfo(false); }}
       />
     </div>
   );

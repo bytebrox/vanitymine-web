@@ -57,7 +57,7 @@ export function DomainSuggestions({ pattern }: DomainSuggestionsProps) {
       }
     };
 
-    fetchSuggestions();
+    void fetchSuggestions();
   }, [cleanName]);
 
   // Don't show if pattern is too short
@@ -68,7 +68,7 @@ export function DomainSuggestions({ pattern }: DomainSuggestionsProps) {
   return (
     <div className="border border-purple-200 bg-purple-50 rounded p-4">
       <button
-        onClick={() => setExpanded(!expanded)}
+        onClick={() => { setExpanded(!expanded); }}
         className="w-full flex items-center justify-between text-left"
       >
         <div>

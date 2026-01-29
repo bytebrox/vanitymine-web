@@ -15,7 +15,7 @@ export default function SecurityPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar onHowItWorksClick={() => setShowSecurityInfo(true)} />
+      <Navbar onHowItWorksClick={() => { setShowSecurityInfo(true); }} />
 
       {/* Hero with background image */}
       <header className="border-b-2 border-ink relative">
@@ -110,8 +110,11 @@ export default function SecurityPage() {
               <a href="#opensource" className="px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium bg-ink/5 hover:bg-accent hover:text-white transition-colors whitespace-nowrap">
                 07 Open Source
               </a>
+              <a href="#audits" className="px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium bg-ink/5 hover:bg-accent hover:text-white transition-colors whitespace-nowrap">
+                08 Audits
+              </a>
               <a href="#faq" className="px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium bg-ink/5 hover:bg-accent hover:text-white transition-colors whitespace-nowrap">
-                08 FAQ
+                09 FAQ
               </a>
             </div>
           </div>
@@ -388,7 +391,7 @@ export default function SecurityPage() {
               and visible on GitHub.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
               <div className="border border-ink/20 p-5">
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-2xl">🤖</span>
@@ -405,7 +408,7 @@ export default function SecurityPage() {
                   <h3 className="font-bold">CodeQL</h3>
                 </div>
                 <p className="text-sm text-muted">
-                  GitHub's semantic code analysis. Scans for security vulnerabilities, 
+                  GitHub&apos;s semantic code analysis. Scans for security vulnerabilities, 
                   bugs, and code quality issues on every push.
                 </p>
               </div>
@@ -421,12 +424,32 @@ export default function SecurityPage() {
               </div>
               <div className="border border-ink/20 p-5">
                 <div className="flex items-center gap-3 mb-3">
+                  <span className="text-2xl">✅</span>
+                  <h3 className="font-bold">Codacy</h3>
+                </div>
+                <p className="text-sm text-muted">
+                  Automated code quality and security analysis. Monitors code patterns, 
+                  complexity, and potential vulnerabilities.
+                </p>
+              </div>
+              <div className="border border-ink/20 p-5">
+                <div className="flex items-center gap-3 mb-3">
                   <span className="text-2xl">💡</span>
                   <h3 className="font-bold">Lighthouse CI</h3>
                 </div>
                 <p className="text-sm text-muted">
                   Monitors performance, accessibility, and best practices. 
                   Ensures the site meets web standards.
+                </p>
+              </div>
+              <div className="border border-ink/20 p-5">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-2xl">🔮</span>
+                  <h3 className="font-bold">Snyk</h3>
+                </div>
+                <p className="text-sm text-muted">
+                  Real-time vulnerability monitoring for dependencies. 
+                  Alerts on new security issues.
                 </p>
               </div>
             </div>
@@ -610,10 +633,142 @@ export default function SecurityPage() {
             </div>
           </section>
 
+          {/* External Security Audits */}
+          <section id="audits" className="scroll-mt-20">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 flex items-center gap-3">
+              <span className="text-accent">08</span>
+              External Security Audits
+            </h2>
+
+            <p className="text-muted mb-6">
+              Our code is continuously monitored by independent third-party security services. 
+              Click any badge to view the full report.
+            </p>
+
+            {/* Live Badges */}
+            <div className="flex flex-wrap gap-2 mb-8 p-4 bg-ink/5 border border-ink/20 justify-center">
+              <a href="https://github.com/bytebrox/vanitymine-web/actions/workflows/ci.yml" target="_blank" rel="noopener noreferrer">
+                <img src="https://github.com/bytebrox/vanitymine-web/actions/workflows/ci.yml/badge.svg" alt="CI" className="h-5" />
+              </a>
+              <a href="https://github.com/bytebrox/vanitymine-web/actions/workflows/codeql.yml" target="_blank" rel="noopener noreferrer">
+                <img src="https://github.com/bytebrox/vanitymine-web/actions/workflows/codeql.yml/badge.svg" alt="CodeQL" className="h-5" />
+              </a>
+              <a href="https://snyk.io/test/github/bytebrox/vanitymine-web" target="_blank" rel="noopener noreferrer">
+                <img src="https://snyk.io/test/github/bytebrox/vanitymine-web/badge.svg" alt="Snyk" className="h-5" />
+              </a>
+              <a href="https://app.codacy.com/gh/bytebrox/vanitymine-web/dashboard" target="_blank" rel="noopener noreferrer">
+                <img src="https://app.codacy.com/project/badge/Grade/87604c4f215b425290fdc373a1c69b00" alt="Codacy" className="h-5" />
+              </a>
+              <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">
+                <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License" className="h-5" />
+              </a>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+              {/* Snyk */}
+              <a
+                href="https://snyk.io/test/github/bytebrox/vanitymine-web"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-2 border-ink/20 p-6 hover:border-purple-500 hover:bg-purple-50 transition-colors text-center"
+              >
+                <div className="text-3xl mb-3">🔮</div>
+                <h3 className="font-bold text-lg mb-1">Snyk</h3>
+                <p className="text-sm text-muted mb-3">Dependency Vulnerabilities</p>
+                <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+                  Monitored
+                </span>
+              </a>
+
+              {/* Codacy */}
+              <a
+                href="https://app.codacy.com/gh/bytebrox/vanitymine-web/dashboard"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-2 border-ink/20 p-6 hover:border-green-500 hover:bg-green-50 transition-colors text-center"
+              >
+                <div className="text-3xl mb-3">✅</div>
+                <h3 className="font-bold text-lg mb-1">Codacy</h3>
+                <p className="text-sm text-muted mb-3">Code Quality Analysis</p>
+                <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+                  Monitored
+                </span>
+              </a>
+
+              {/* Socket.dev */}
+              <a
+                href="https://socket.dev/npm/package/vanitymine"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-2 border-ink/20 p-6 hover:border-blue-500 hover:bg-blue-50 transition-colors text-center"
+              >
+                <div className="text-3xl mb-3">🔌</div>
+                <h3 className="font-bold text-lg mb-1">Socket.dev</h3>
+                <p className="text-sm text-muted mb-3">Supply Chain Security</p>
+                <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+                  Monitored
+                </span>
+              </a>
+
+              {/* CodeQL */}
+              <a
+                href="https://github.com/bytebrox/vanitymine-web/security/code-scanning"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-2 border-ink/20 p-6 hover:border-orange-500 hover:bg-orange-50 transition-colors text-center"
+              >
+                <div className="text-3xl mb-3">🔍</div>
+                <h3 className="font-bold text-lg mb-1">CodeQL</h3>
+                <p className="text-sm text-muted mb-3">Static Code Analysis</p>
+                <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+                  Active
+                </span>
+              </a>
+
+              {/* Dependabot */}
+              <a
+                href="https://github.com/bytebrox/vanitymine-web/security/dependabot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-2 border-ink/20 p-6 hover:border-cyan-500 hover:bg-cyan-50 transition-colors text-center"
+              >
+                <div className="text-3xl mb-3">🤖</div>
+                <h3 className="font-bold text-lg mb-1">Dependabot</h3>
+                <p className="text-sm text-muted mb-3">Auto Security Updates</p>
+                <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+                  Active
+                </span>
+              </a>
+
+              {/* Mozilla Observatory */}
+              <a
+                href="https://observatory.mozilla.org/analyze/www.vanitymine.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-2 border-ink/20 p-6 hover:border-red-500 hover:bg-red-50 transition-colors text-center"
+              >
+                <div className="text-3xl mb-3">🦊</div>
+                <h3 className="font-bold text-lg mb-1">Mozilla Observatory</h3>
+                <p className="text-sm text-muted mb-3">HTTP Security Headers</p>
+                <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
+                  Check Score
+                </span>
+              </a>
+            </div>
+
+            <div className="bg-ink/5 border border-ink/20 p-4 text-sm text-center">
+              <p className="text-muted">
+                All security reports are public and independently verifiable. 
+                <br className="hidden sm:block" />
+                Click any service above to view the full audit report.
+              </p>
+            </div>
+          </section>
+
           {/* FAQ */}
           <section id="faq" className="scroll-mt-20">
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 flex items-center gap-3">
-              <span className="text-accent">08</span>
+              <span className="text-accent">09</span>
               Common Questions
             </h2>
 
@@ -693,7 +848,7 @@ export default function SecurityPage() {
       
       <SecurityInfo
         isOpen={showSecurityInfo}
-        onClose={() => setShowSecurityInfo(false)}
+        onClose={() => { setShowSecurityInfo(false); }}
       />
     </div>
   );

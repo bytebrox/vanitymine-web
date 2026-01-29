@@ -97,7 +97,7 @@ export function Navbar({ onHowItWorksClick }: NavbarProps) {
 
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => { setMobileMenuOpen(!mobileMenuOpen); }}
             className="md:hidden p-2 -mr-2 text-ink"
             aria-label="Toggle menu"
           >

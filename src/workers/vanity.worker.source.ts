@@ -34,7 +34,7 @@ async function checkNativeSupport(): Promise<boolean> {
 checkNativeSupport().then(supported => {
   useNativeCrypto = supported;
   console.log(`Ed25519: ${supported ? 'Native Web Crypto' : 'WASM fallback'}`);
-});
+}).catch(() => { /* Fallback to WASM */ });
 
 /**
  * Generate keypair using native Web Crypto API

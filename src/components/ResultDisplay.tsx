@@ -24,7 +24,7 @@ export function ResultDisplay({ result, onReset }: ResultDisplayProps) {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedField(field);
-      setTimeout(() => setCopiedField(null), 2000);
+      setTimeout(() => { setCopiedField(null); }, 2000);
     } catch (err) {
       console.error('Failed to copy:', err);
     }
@@ -128,7 +128,7 @@ IMPORTANT:
           </label>
           <div className="flex items-center gap-3">
             <button
-              onClick={() => setShowPrivateKey(!showPrivateKey)}
+              onClick={() => { setShowPrivateKey(!showPrivateKey); }}
               className="text-micro text-accent hover:underline"
             >
               {showPrivateKey ? 'Hide' : 'Reveal'}
@@ -208,9 +208,11 @@ function HighlightedKey({
   pubkey: string;
   pattern: string;
 }) {
-  const [prefix, suffix] = pattern.split('...');
-  const prefixLen = prefix?.length || 0;
-  const suffixLen = suffix?.length || 0;
+  const parts = pattern.split('...');
+  const prefix = parts[0] || '';
+  const suffix = parts[1] || '';
+  const prefixLen = prefix.length;
+  const suffixLen = suffix.length;
 
   if (prefixLen === 0 && suffixLen === 0) {
     return <span>{pubkey}</span>;

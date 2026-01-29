@@ -2,6 +2,9 @@
 
 [![CI](https://github.com/bytebrox/vanitymine-web/actions/workflows/ci.yml/badge.svg)](https://github.com/bytebrox/vanitymine-web/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/bytebrox/vanitymine-web/actions/workflows/codeql.yml/badge.svg)](https://github.com/bytebrox/vanitymine-web/actions/workflows/codeql.yml)
+[![Snyk](https://snyk.io/test/github/bytebrox/vanitymine-web/badge.svg)](https://snyk.io/test/github/bytebrox/vanitymine-web)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/87604c4f215b425290fdc373a1c69b00)](https://app.codacy.com/gh/bytebrox/vanitymine-web/dashboard)
+[![Socket](https://img.shields.io/badge/Socket.dev-Protected-blue.svg)](https://socket.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Security Policy](https://img.shields.io/badge/Security-Policy-blue.svg)](SECURITY.md)
 
@@ -66,7 +69,9 @@ We employ multiple automated security measures that run on every code change:
 |----------------|------|---------|
 | **Dependency Scanning** | Dependabot | Automatic security updates for npm packages |
 | **Code Analysis** | CodeQL | Static analysis for vulnerabilities and bugs |
+| **Code Quality** | Codacy | Automated code review and quality checks |
 | **Vulnerability Audit** | npm audit | Checks for known CVEs in dependencies |
+| **Dependency Security** | Snyk | Real-time vulnerability monitoring |
 | **Performance** | Lighthouse CI | Monitors performance, accessibility, best practices |
 | **Build Verification** | GitHub Actions | Ensures code compiles and passes all tests |
 

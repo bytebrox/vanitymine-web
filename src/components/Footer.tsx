@@ -152,6 +152,28 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Security Badges */}
+        <div className="mb-6 sm:mb-8">
+          <p className="text-xs text-paper/50 uppercase tracking-wider mb-3">Security Status</p>
+          <div className="flex flex-wrap gap-2">
+            <a href="https://github.com/bytebrox/vanitymine-web/actions/workflows/ci.yml" target="_blank" rel="noopener noreferrer">
+              <img src="https://github.com/bytebrox/vanitymine-web/actions/workflows/ci.yml/badge.svg" alt="CI" className="h-5" />
+            </a>
+            <a href="https://github.com/bytebrox/vanitymine-web/actions/workflows/codeql.yml" target="_blank" rel="noopener noreferrer">
+              <img src="https://github.com/bytebrox/vanitymine-web/actions/workflows/codeql.yml/badge.svg" alt="CodeQL" className="h-5" />
+            </a>
+            <a href="https://snyk.io/test/github/bytebrox/vanitymine-web" target="_blank" rel="noopener noreferrer">
+              <img src="https://snyk.io/test/github/bytebrox/vanitymine-web/badge.svg" alt="Snyk" className="h-5" />
+            </a>
+            <a href="https://app.codacy.com/gh/bytebrox/vanitymine-web/dashboard" target="_blank" rel="noopener noreferrer">
+              <img src="https://app.codacy.com/project/badge/Grade/87604c4f215b425290fdc373a1c69b00" alt="Codacy" className="h-5" />
+            </a>
+            <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">
+              <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License" className="h-5" />
+            </a>
+          </div>
+        </div>
+
         {/* Divider */}
         <div className="border-t-2 border-accent mb-6 sm:mb-8" />
 

@@ -4,6 +4,28 @@ All notable changes to VanityMine will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.9.5] - 2026-01-29
+
+### Fixed
+- **Codacy Code Quality Issues** - Resolved ~30 code quality findings
+  - Arrow function void returns now use proper braces
+  - Promise handling with proper `.catch()` handlers
+  - Removed unnecessary optional chains
+  - Improved TypeScript type safety
+
+### Enhanced
+- **Hero Background Images** - Consistent branding across all pages
+  - Added to FAQ page header
+  - Added to "How it Works" modal header
+  - Matches Security page and main pages
+
+### Code Quality
+- All Promise-returning functions now have proper error handling
+- Arrow function shorthand syntax corrected for void returns
+- Improved AudioContext browser compatibility typing
+
+---
+
 ## [0.9.4] - 2026-01-29
 
 ### Added
@@ -15,13 +37,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   - HTTP security headers documentation
   - Step-by-step verification instructions (3 methods)
   - Open source transparency links
+  - **External Security Audits section** - Links to Snyk, Codacy, Socket.dev, CodeQL, Dependabot, Mozilla Observatory
   - Common security questions answered
-  - **Sticky navigation menu** - Jump to any of the 8 sections instantly
+  - **Sticky navigation menu** - Jump to any of the 9 sections instantly
   - Hero section with background image (consistent with other pages)
 
 ### Navigation
 - Added Security link to main navigation (desktop + mobile)
 - Added Security link to footer with security policy link
+
+### Security Badges
+- Added Snyk badge to README
+- Added Codacy badge to README
+- Added Socket.dev badge to README
 
 ### SEO
 - Security page meta tags and Open Graph data

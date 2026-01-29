@@ -254,11 +254,15 @@ export default function FAQPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar onHowItWorksClick={() => setShowSecurityInfo(true)} />
+      <Navbar onHowItWorksClick={() => { setShowSecurityInfo(true); }} />
 
-      {/* Header */}
-      <header className="border-b-2 border-ink bg-paper">
-        <div className="px-4 sm:px-6 md:px-12 lg:px-20 py-12 md:py-16">
+      {/* Header with background image */}
+      <header className="border-b-2 border-ink bg-paper relative">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+          style={{ backgroundImage: 'url(/hero.png)' }}
+        />
+        <div className="relative px-4 sm:px-6 md:px-12 lg:px-20 py-12 md:py-16">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-4">
             Frequently Asked<br />
             <span className="text-accent">Questions</span>
@@ -275,7 +279,7 @@ export default function FAQPage() {
         {/* Category filter */}
         <div className="flex flex-wrap gap-2 mb-8 pb-6 border-b border-ink/20">
           <button
-            onClick={() => setActiveCategory('All')}
+            onClick={() => { setActiveCategory('All'); }}
             className={`px-4 py-2 text-sm font-medium transition-colors ${
               activeCategory === 'All'
                 ? 'bg-ink text-paper'
@@ -287,7 +291,7 @@ export default function FAQPage() {
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => { setActiveCategory(category); }}
               className={`px-4 py-2 text-sm font-medium transition-colors ${
                 activeCategory === category
                   ? 'bg-ink text-paper'
@@ -308,7 +312,7 @@ export default function FAQPage() {
             return (
               <div key={globalIndex} className="border-b border-ink/20">
                 <button
-                  onClick={() => setOpenIndex(isOpen ? null : globalIndex)}
+                  onClick={() => { setOpenIndex(isOpen ? null : globalIndex); }}
                   className="w-full py-5 flex items-start justify-between text-left gap-4"
                 >
                   <div>
@@ -339,7 +343,7 @@ export default function FAQPage() {
           </p>
           <div className="flex flex-wrap gap-3">
             <button
-              onClick={() => setShowSecurityInfo(true)}
+              onClick={() => { setShowSecurityInfo(true); }}
               className="btn-primary"
             >
               How it Works
@@ -360,7 +364,7 @@ export default function FAQPage() {
       
       <SecurityInfo
         isOpen={showSecurityInfo}
-        onClose={() => setShowSecurityInfo(false)}
+        onClose={() => { setShowSecurityInfo(false); }}
       />
     </div>
   );

@@ -147,7 +147,7 @@ export function EntropyInfo() {
   return (
     <div className="border border-blue-200 bg-blue-50 rounded p-4">
       <button
-        onClick={() => setExpanded(!expanded)}
+        onClick={() => { setExpanded(!expanded); }}
         className="w-full flex items-center justify-between text-left"
       >
         <div className="flex items-center gap-2">

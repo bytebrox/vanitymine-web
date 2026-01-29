@@ -69,8 +69,8 @@ export function HomeContent() {
     
     navigator.clipboard.writeText(shareUrl).then(() => {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
+      setTimeout(() => { setCopied(false); }, 2000);
+    }).catch(() => { /* Clipboard access denied */ });
   }, [prefix, suffix]);
 
   // Check if input is valid for starting
@@ -94,7 +94,7 @@ export function HomeContent() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Navigation */}
-      <Navbar onHowItWorksClick={() => setShowSecurityInfo(true)} />
+      <Navbar onHowItWorksClick={() => { setShowSecurityInfo(true); }} />
 
       {/* Header */}
       <Header />
@@ -150,7 +150,7 @@ export function HomeContent() {
                   <span className="text-accent">✓</span> Community stats store only 2 numbers – no IPs, no keys, no tracking
                 </p>
                 <button
-                  onClick={() => setShowSecurityInfo(true)}
+                  onClick={() => { setShowSecurityInfo(true); }}
                   className="text-caption text-accent hover:underline underline-offset-2"
                 >
                   Verify it yourself →
@@ -198,7 +198,7 @@ export function HomeContent() {
       {/* Security info modal */}
       <SecurityInfo
         isOpen={showSecurityInfo}
-        onClose={() => setShowSecurityInfo(false)}
+        onClose={() => { setShowSecurityInfo(false); }}
       />
     </div>
   );
