@@ -313,6 +313,50 @@ export function SecurityInfo({ isOpen, onClose }: SecurityInfoProps) {
             </div>
           </section>
 
+          {/* Continuous Security */}
+          <section className="bg-slate-50 border-l-4 border-slate-500 p-3 sm:p-4">
+            <h3 className="text-xs sm:text-caption font-bold uppercase tracking-wider text-slate-700 mb-2 sm:mb-3">
+              Continuous Security (CI/CD)
+            </h3>
+            <div className="space-y-2 sm:space-y-3 text-sm sm:text-body text-slate-900">
+              <p>
+                <strong>Automated security checks run on every code change:</strong>
+              </p>
+              <div className="grid grid-cols-2 gap-2 text-xs sm:text-micro">
+                <div className="bg-white/50 p-2 rounded">
+                  <p className="font-bold text-slate-700 mb-1">Automated Checks:</p>
+                  <ul className="space-y-0.5">
+                    <li>• Dependabot (dependency updates)</li>
+                    <li>• CodeQL (code analysis)</li>
+                    <li>• npm audit (CVE scanning)</li>
+                    <li>• Lighthouse CI (best practices)</li>
+                  </ul>
+                </div>
+                <div className="bg-white/50 p-2 rounded">
+                  <p className="font-bold text-slate-700 mb-1">Transparency:</p>
+                  <ul className="space-y-0.5">
+                    <li>• All results are public</li>
+                    <li>• View on GitHub Actions</li>
+                    <li>• Security alerts visible</li>
+                    <li>• Open source code</li>
+                  </ul>
+                </div>
+              </div>
+              <p className="text-xs sm:text-micro text-slate-700">
+                Check our{' '}
+                <a 
+                  href="https://github.com/bytebrox/vanitymine-web/actions" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="underline hover:text-slate-900"
+                >
+                  GitHub Actions
+                </a>{' '}
+                for live security status.
+              </p>
+            </div>
+          </section>
+
           {/* Warning */}
           <section className="bg-yellow-50 border border-yellow-200 p-3 sm:p-4">
             <h3 className="text-xs sm:text-caption font-bold uppercase tracking-wider text-yellow-800 mb-1.5 sm:mb-2">

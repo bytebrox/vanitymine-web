@@ -63,6 +63,12 @@ export function Navbar({ onHowItWorksClick }: NavbarProps) {
             >
               FAQ
             </a>
+            <a
+              href="/security"
+              className="text-muted hover:text-ink transition-colors flex items-center gap-1"
+            >
+              <span>🔒</span> Security
+            </a>
             {/* GitHub Icon */}
             <a
               href="https://github.com/bytebrox/vanitymine-web"
@@ -131,6 +137,12 @@ export function Navbar({ onHowItWorksClick }: NavbarProps) {
               className="block py-2 text-body text-muted hover:text-ink transition-colors"
             >
               FAQ
+            </a>
+            <a
+              href="/security"
+              className="flex items-center gap-2 py-2 text-body text-muted hover:text-ink transition-colors"
+            >
+              <span>🔒</span> Security
             </a>
             <a
               href="https://github.com/bytebrox/vanitymine-web"

@@ -4,6 +4,51 @@ All notable changes to VanityMine will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.9.4] - 2026-01-29
+
+### Added
+- **Security Page** (`/security`) - Comprehensive security documentation page
+  - Full architecture explanation with visual CSS diagram
+  - Data storage transparency (what we store vs. don't store)
+  - Cryptographic security details (Ed25519, CSPRNG, entropy)
+  - Automated CI/CD security overview
+  - HTTP security headers documentation
+  - Step-by-step verification instructions (3 methods)
+  - Open source transparency links
+  - Common security questions answered
+  - **Sticky navigation menu** - Jump to any of the 8 sections instantly
+  - Hero section with background image (consistent with other pages)
+
+### Navigation
+- Added Security link to main navigation (desktop + mobile)
+- Added Security link to footer with security policy link
+
+### SEO
+- Security page meta tags and Open Graph data
+
+---
+
+## [0.9.3] - 2026-01-29
+
+### Added
+- **Lighthouse CI** - Performance and best practices monitoring on every push
+- **Security Documentation** - Comprehensive security info across all docs
+
+### Documentation
+- **FAQ** - 4 new questions about automated security (Dependabot, CodeQL, CI/CD, audit visibility)
+- **README** - New "Continuous Security (CI/CD)" section with security tools table
+- **SECURITY.md** - Expanded with detailed HTTP headers, automated checks table, and crypto specs
+- **How it Works Modal** - New "Continuous Security" section explaining CI/CD checks
+
+### Transparency
+All automated security checks are now documented and publicly visible:
+- Dependabot for dependency scanning
+- CodeQL for static code analysis
+- npm audit for CVE scanning
+- Lighthouse CI for performance/accessibility
+
+---
+
 ## [0.9.2] - 2026-01-29
 
 ### Added

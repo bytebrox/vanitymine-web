@@ -96,11 +96,29 @@ export function Footer() {
             <h4 className="text-sm font-bold uppercase tracking-wider mb-4 sm:mb-6">
               Security
             </h4>
-            <ul className="space-y-2 sm:space-y-3 text-paper/70 text-sm sm:text-base">
-              <li>✓ 100% Client-Side</li>
-              <li>✓ No Server Storage</li>
-              <li>✓ Open Source</li>
-              <li>✓ Offline Capable</li>
+            <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base">
+              <li>
+                <a
+                  href="/security"
+                  className="text-paper/70 hover:text-paper transition-colors"
+                >
+                  🔒 Security Overview
+                </a>
+              </li>
+              <li className="text-paper/70">✓ 100% Client-Side</li>
+              <li className="text-paper/70">✓ No Server Storage</li>
+              <li className="text-paper/70">✓ Open Source</li>
+              <li className="text-paper/70">✓ Offline Capable</li>
+              <li>
+                <a
+                  href="https://github.com/bytebrox/vanitymine-web/security/policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-paper/70 hover:text-paper transition-colors"
+                >
+                  Security Policy
+                </a>
+              </li>
             </ul>
           </div>
 

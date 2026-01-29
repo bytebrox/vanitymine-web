@@ -48,21 +48,45 @@ We appreciate responsible disclosure of security vulnerabilities.
 
 ## Security Measures
 
-### Headers
-- Content-Security-Policy (strict)
-- Strict-Transport-Security (HSTS)
-- X-Frame-Options: DENY
-- X-Content-Type-Options: nosniff
+### HTTP Security Headers
+| Header | Value | Purpose |
+|--------|-------|---------|
+| Content-Security-Policy | strict | Prevents XSS, data injection |
+| Strict-Transport-Security | max-age=31536000 | Forces HTTPS (HSTS) |
+| X-Frame-Options | DENY | Prevents clickjacking |
+| X-Content-Type-Options | nosniff | Prevents MIME sniffing |
 
-### Code Security
-- Dependabot for dependency updates
-- CodeQL for static analysis
-- npm audit in CI pipeline
+### Automated Security (CI/CD)
+
+We run continuous security checks on every push and pull request:
+
+| Tool | Trigger | What it does |
+|------|---------|--------------|
+| **Dependabot** | Daily + on vulnerability | Auto-creates PRs for security updates |
+| **CodeQL** | Every push/PR + weekly | Semantic code analysis for vulnerabilities |
+| **npm audit** | Every push/PR | Scans for known CVEs in dependencies |
+| **Lighthouse CI** | Every push/PR | Performance, accessibility, best practices |
+
+**View results:**
+- [CI Status](https://github.com/bytebrox/vanitymine-web/actions/workflows/ci.yml)
+- [CodeQL Scans](https://github.com/bytebrox/vanitymine-web/security/code-scanning)
+- [Dependabot Alerts](https://github.com/bytebrox/vanitymine-web/security/dependabot)
 
 ### Cryptography
-- Native Web Crypto API (Ed25519)
-- Hardware-backed CSPRNG
-- 256-bit entropy keys
+| Component | Implementation | Standard |
+|-----------|----------------|----------|
+| Key Generation | Native Web Crypto API | Ed25519 |
+| Random Numbers | crypto.getRandomValues() | Hardware-backed CSPRNG |
+| Entropy | 256 bits | Industry standard |
+| Encoding | Base58 | Solana compatible |
+
+### Key Security Check
+
+After each key generation, we perform real-time verification:
+- **Entropy Level**: Confirms 256-bit entropy
+- **CSPRNG**: Verifies cryptographically secure RNG
+- **Chi-Square Test**: Statistical randomness verification
+- **Distribution**: Ensures uniform byte distribution
 
 ## Scope
 

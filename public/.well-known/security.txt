@@ -38,6 +38,15 @@ Policy: https://github.com/bytebrox/vanitymine-web/security/policy
 # - NO IP addresses, NO keys, NO patterns, NO user data
 
 # ============================================
+# AUTOMATED SECURITY (CI/CD)
+# ============================================
+# - Dependabot: Automatic dependency security updates
+# - CodeQL: Static code analysis on every push
+# - npm audit: CVE scanning in CI pipeline
+# - Lighthouse CI: Performance and best practices
+# - All checks public: https://github.com/bytebrox/vanitymine-web/actions
+
+# ============================================
 # SECURITY HEADERS
 # ============================================
 # - Content-Security-Policy: Strict CSP

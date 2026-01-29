@@ -58,6 +58,20 @@ This makes addresses more memorable and personal – perfect for public wallets,
 
 VanityMine is designed with a single principle: **your private keys should never leave your device**.
 
+### Continuous Security (CI/CD)
+
+We employ multiple automated security measures that run on every code change:
+
+| Security Layer | Tool | Purpose |
+|----------------|------|---------|
+| **Dependency Scanning** | Dependabot | Automatic security updates for npm packages |
+| **Code Analysis** | CodeQL | Static analysis for vulnerabilities and bugs |
+| **Vulnerability Audit** | npm audit | Checks for known CVEs in dependencies |
+| **Performance** | Lighthouse CI | Monitors performance, accessibility, best practices |
+| **Build Verification** | GitHub Actions | Ensures code compiles and passes all tests |
+
+All security checks are **public and transparent** – you can view the results directly on our [GitHub Actions](https://github.com/bytebrox/vanitymine-web/actions) page.
+
 1. **No Server Communication** – The generation process makes zero network requests. Everything runs locally in Web Workers.
 
 2. **Open Source** – The entire codebase is auditable. You can verify exactly what the code does.

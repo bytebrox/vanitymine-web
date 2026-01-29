@@ -137,6 +137,26 @@ const faqs: FAQItem[] = [
     question: 'What is CSPRNG?',
     answer: 'CSPRNG stands for Cryptographically Secure Pseudo-Random Number Generator. It\'s a special type of random number generator designed for security applications. Your browser\'s Web Crypto API provides hardware-backed CSPRNG, which is the gold standard for key generation.',
   },
+  {
+    category: 'Security',
+    question: 'What automated security measures are in place?',
+    answer: 'We use multiple layers of automated security: Dependabot automatically updates dependencies with security patches, CodeQL performs static code analysis on every push, npm audit runs in our CI pipeline to check for known vulnerabilities, and Lighthouse CI monitors performance and best practices. All security checks are public and visible on our GitHub repository.',
+  },
+  {
+    category: 'Security',
+    question: 'What is CodeQL and why does it matter?',
+    answer: 'CodeQL is GitHub\'s semantic code analysis engine. It scans our codebase for security vulnerabilities, bugs, and code quality issues on every push and pull request. This means potential security issues are caught before they ever reach production. Results are visible in our GitHub Security tab.',
+  },
+  {
+    category: 'Security',
+    question: 'How do you keep dependencies secure?',
+    answer: 'We use Dependabot, which automatically monitors all our npm packages for known vulnerabilities. When a security update is available, Dependabot creates a pull request within hours. This ensures we\'re always running the most secure versions of our dependencies.',
+  },
+  {
+    category: 'Security',
+    question: 'Where can I see the security audit results?',
+    answer: 'All our security checks are transparent and public: 1) CI build status shows in the README badges, 2) CodeQL results are in GitHub\'s Security tab, 3) Dependabot alerts are visible in the repository, 4) You can also check our SECURITY.md file for our complete security policy and how to report vulnerabilities.',
+  },
 
   // Technical
   {
