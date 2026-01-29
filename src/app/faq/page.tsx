@@ -122,6 +122,21 @@ const faqs: FAQItem[] = [
     question: 'Are vanity addresses less secure than random addresses?',
     answer: 'No. The cryptographic security is identical. The private key is still generated randomly using secure methods (Web Crypto API). Only the public key is filtered for your pattern.',
   },
+  {
+    category: 'Security',
+    question: 'What is the Key Security Check?',
+    answer: 'After generating a key, we perform a real-time security analysis: checking entropy level (256 bits), verifying CSPRNG support, running a random sample test with 10,000 bytes, and performing a Chi-Square statistical test. This proves your browser uses proper cryptographic random number generation.',
+  },
+  {
+    category: 'Security',
+    question: 'What does the Chi-Square test measure?',
+    answer: 'The Chi-Square test verifies that random numbers are uniformly distributed. We generate 10,000 random bytes and check if all 256 possible values (0-255) appear with roughly equal frequency. A Chi-Square value below 293 means excellent randomness (p > 0.05).',
+  },
+  {
+    category: 'Security',
+    question: 'What is CSPRNG?',
+    answer: 'CSPRNG stands for Cryptographically Secure Pseudo-Random Number Generator. It\'s a special type of random number generator designed for security applications. Your browser\'s Web Crypto API provides hardware-backed CSPRNG, which is the gold standard for key generation.',
+  },
 
   // Technical
   {

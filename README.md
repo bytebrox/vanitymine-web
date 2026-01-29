@@ -27,6 +27,7 @@ This makes addresses more memorable and personal – perfect for public wallets,
 - **Multi-Core Processing** – Uses all available CPU cores (~100,000 keys/second)
 - **Token Mint Generator** – Create vanity addresses for pump.fun token launches
 - **Domain Suggestions** – Get matching .sol, .solana, .bonk, .poor domain suggestions after generating
+- **Key Security Check** – Verify cryptographic quality with real-time entropy analysis
 - **Smart Difficulty Estimation** – Accurate time estimates including first-character rarity
 - **Sound Notification** – Optional audio alert when address is found
 - **Instant Export** – Download keys as TXT or JSON (Solana CLI compatible)
@@ -128,6 +129,30 @@ After generating a vanity address, VanityMine suggests matching domain names you
 | `.poor` | AllDomains | `doge.poor` |
 
 Click any suggestion to check availability and register directly on the provider's site. Domains make your vanity address even easier to share!
+
+## Key Security Check
+
+After generating a key, VanityMine performs a real-time security analysis:
+
+| Check | What it verifies |
+|-------|------------------|
+| **Entropy Level** | 256-bit entropy (Ed25519 standard) |
+| **CSPRNG** | Cryptographically Secure Pseudo-Random Number Generator |
+| **Random Sample Test** | 10,000 bytes tested for uniform distribution |
+| **Chi-Square Test** | Statistical verification of randomness quality |
+
+### Sample Output
+```
+🔐 Key Security Check
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Entropy:      256 bits ✓
+CSPRNG:       Verified ✓
+Distribution: 97.2% uniform ✓
+Chi-Square:   241.5 (p=0.95) ✓
+RNG Speed:    850M/sec
+```
+
+This proves your browser uses hardware-backed random number generation – the gold standard for cryptographic key generation.
 
 ## Architecture
 

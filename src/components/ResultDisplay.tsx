@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { GeneratedKeypair } from '@/types';
 import { formatNumber, formatDuration } from '@/lib/format';
 import { DomainSuggestions } from './DomainSuggestions';
+import { EntropyInfo } from './EntropyInfo';
 
 interface ResultDisplayProps {
   result: GeneratedKeypair;
@@ -169,6 +170,11 @@ IMPORTANT:
       {/* Domain suggestions */}
       <div className="mb-6">
         <DomainSuggestions pattern={result.matchedPattern} />
+      </div>
+
+      {/* Entropy/Security Info */}
+      <div className="mb-6">
+        <EntropyInfo />
       </div>
 
       {/* Actions */}

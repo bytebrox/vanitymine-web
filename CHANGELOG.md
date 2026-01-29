@@ -4,6 +4,29 @@ All notable changes to VanityMine will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.9.0] - 2026-01-29
+
+### Added
+- **Key Security Check (Entropy Info)** - Shows cryptographic quality of generated keys
+- **OG Images** - Social media preview images for link sharing on X/Telegram
+
+### Key Security Check
+- Displays entropy level (256 bits for Ed25519)
+- Verifies CSPRNG (Cryptographically Secure Pseudo-Random Number Generator)
+- **Random Sample Test** - Tests 10,000 bytes for uniform distribution
+- **Chi-Square Test** - Statistical verification of randomness quality
+- **RNG Speed Measurement** - Shows actual random number generation performance
+- Shows browser and Web Crypto API support status
+- Technical details: Algorithm, key size, security level, RFC standard
+- Expandable UI - collapsed by default, expand for full details
+
+### Documentation Updates
+- Added Key Security Check section to README
+- Added 3 new FAQ entries about entropy, Chi-Square, and CSPRNG
+- Added Key Security Check section to "How it Works" modal
+
+---
+
 ## [0.8.0] - 2026-01-29
 
 ### Added

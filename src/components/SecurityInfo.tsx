@@ -278,6 +278,41 @@ export function SecurityInfo({ isOpen, onClose }: SecurityInfoProps) {
             </div>
           </section>
 
+          {/* Key Security Check */}
+          <section className="bg-green-50 border-l-4 border-green-500 p-3 sm:p-4">
+            <h3 className="text-xs sm:text-caption font-bold uppercase tracking-wider text-green-700 mb-2 sm:mb-3">
+              Key Security Check
+            </h3>
+            <div className="space-y-2 sm:space-y-3 text-sm sm:text-body text-green-900">
+              <p>
+                <strong>After generating a key, we verify its cryptographic quality in real-time.</strong>
+              </p>
+              <div className="grid grid-cols-2 gap-2 text-xs sm:text-micro">
+                <div className="bg-white/50 p-2 rounded">
+                  <p className="font-bold text-green-700 mb-1">What we check:</p>
+                  <ul className="space-y-0.5">
+                    <li>• 256-bit entropy level</li>
+                    <li>• CSPRNG verification</li>
+                    <li>• Random sample test (10K bytes)</li>
+                    <li>• Chi-Square statistical test</li>
+                  </ul>
+                </div>
+                <div className="bg-white/50 p-2 rounded">
+                  <p className="font-bold text-green-700 mb-1">What it proves:</p>
+                  <ul className="space-y-0.5">
+                    <li>• Hardware-backed RNG</li>
+                    <li>• Uniform distribution</li>
+                    <li>• Unpredictable output</li>
+                    <li>• Cryptographic quality</li>
+                  </ul>
+                </div>
+              </div>
+              <p className="text-xs sm:text-micro text-green-700">
+                This is the gold standard for cryptographic key generation. If any test fails, you'll see a warning.
+              </p>
+            </div>
+          </section>
+
           {/* Warning */}
           <section className="bg-yellow-50 border border-yellow-200 p-3 sm:p-4">
             <h3 className="text-xs sm:text-caption font-bold uppercase tracking-wider text-yellow-800 mb-1.5 sm:mb-2">

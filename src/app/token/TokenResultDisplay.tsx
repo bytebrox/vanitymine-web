@@ -9,7 +9,7 @@
 import { useState } from 'react';
 import { GeneratedKeypair } from '@/types';
 import { formatNumber, formatDuration } from '@/lib/format';
-import { DomainSuggestions } from '@/components';
+import { DomainSuggestions, EntropyInfo } from '@/components';
 
 interface TokenResultDisplayProps {
   result: GeneratedKeypair;
@@ -195,6 +195,11 @@ IMPORTANT:
       {/* Domain suggestions for token */}
       <div className="mb-6">
         <DomainSuggestions pattern={result.matchedPattern} />
+      </div>
+
+      {/* Entropy/Security Info */}
+      <div className="mb-6">
+        <EntropyInfo />
       </div>
 
       {/* Actions */}

@@ -13,3 +13,4 @@ export { SecurityInfo } from './SecurityInfo';
 export { Footer } from './Footer';
 export { CommunityStats, reportStats } from './CommunityStats';
 export { DomainSuggestions } from './DomainSuggestions';
+export { EntropyInfo } from './EntropyInfo';
