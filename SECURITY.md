@@ -24,7 +24,6 @@ We appreciate responsible disclosure of security vulnerabilities.
 
 1. **DO NOT** open a public GitHub issue for security vulnerabilities
 2. Use [GitHub Security Advisories](https://github.com/bytebrox/vanitymine-web/security/advisories/new) (preferred)
-3. Or email: security@vanitymine.com
 
 ### What to Include
 

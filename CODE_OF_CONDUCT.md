@@ -37,7 +37,6 @@ This Code of Conduct applies within all community spaces, and also applies when 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement at:
 
 * GitHub Issues (for non-sensitive matters)
-* Email: conduct@vanitymine.com (for sensitive matters)
 
 All complaints will be reviewed and investigated promptly and fairly.
 
