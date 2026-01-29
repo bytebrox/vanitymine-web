@@ -59,3 +59,39 @@ jobs:
       - name: Check for known vulnerabilities
         run: npx audit-ci --moderate
         continue-on-error: true
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # For PRs: Wait for Vercel preview
+      - name: Wait for Vercel Preview
+        if: github.event_name == 'pull_request'
+        uses: patrickedqvist/wait-for-vercel-preview@v1.3.1
+        id: vercel_preview
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          max_timeout: 300
+
+      # For PRs: Test preview URL
+      - name: Lighthouse (Preview)
+        if: github.event_name == 'pull_request'
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          urls: ${{ steps.vercel_preview.outputs.url }}
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      # For main: Test production URL
+      - name: Lighthouse (Production)
+        if: github.event_name == 'push'
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          urls: https://vanitymine.vercel.app
+          uploadArtifacts: true
+          temporaryPublicStorage: true
