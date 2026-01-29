@@ -142,12 +142,12 @@ const faqs: FAQItem[] = [
   {
     category: 'Technical',
     question: 'How does the generation work?',
-    answer: 'We generate random Ed25519 keypairs and check if the resulting public key (Base58 encoded) matches your pattern. This is repeated until a match is found. Our WASM engine can check 22,000+ keys per second.',
+    answer: 'We use your browser\'s native Web Crypto API to generate random Ed25519 keypairs, then check if the resulting public key (Base58 encoded) matches your pattern. This is repeated until a match is found. Modern browsers can generate 100,000+ keys per second using all CPU cores.',
   },
   {
     category: 'Technical',
-    question: 'What is WASM and why does it make this faster?',
-    answer: 'WebAssembly (WASM) is a binary format that runs at near-native speed in browsers. We use watsign, a WASM port of the Ed25519 algorithm, which is about 28x faster than pure JavaScript implementations.',
+    question: 'Why is this so fast?',
+    answer: 'We use the native Web Crypto API (SubtleCrypto.generateKey) which is implemented in browser\'s C++ code, not JavaScript. This is 125x faster than JavaScript implementations and even faster than WebAssembly. Chrome 137+, Firefox 129+, and Safari 17+ all support native Ed25519.',
   },
   {
     category: 'Technical',
@@ -157,12 +157,17 @@ const faqs: FAQItem[] = [
   {
     category: 'Technical',
     question: 'Why does the speed vary?',
-    answer: 'Generation speed depends on your device\'s CPU, how many cores it has, and what else your computer is doing. Modern multi-core processors will be significantly faster.',
+    answer: 'Generation speed depends on your device\'s CPU, how many cores it has, browser support for native Ed25519, and what else your computer is doing. Modern multi-core processors with native Ed25519 support (Chrome 137+) will be significantly faster.',
   },
   {
     category: 'Technical',
     question: 'What cryptographic algorithm is used?',
-    answer: 'Ed25519, the same elliptic curve digital signature algorithm used by Solana. Random numbers are generated using the Web Crypto API (crypto.getRandomValues), which is cryptographically secure.',
+    answer: 'Ed25519, the same elliptic curve digital signature algorithm used by Solana. Keys are generated using your browser\'s native Web Crypto API (SubtleCrypto.generateKey for Ed25519), which uses hardware-backed CSPRNG for maximum security.',
+  },
+  {
+    category: 'Technical',
+    question: 'What if my browser doesn\'t support native Ed25519?',
+    answer: 'For older browsers without native Ed25519 support, we fall back to watsign (WebAssembly implementation). This is still fast (~22,000 keys/sec) but about 5x slower than native. The Key Security Check will show which method your browser uses.',
   },
 
   // Usage

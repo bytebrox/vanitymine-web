@@ -4,6 +4,19 @@ All notable changes to VanityMine will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.9.1] - 2026-01-29
+
+### Security
+- **HSTS Header** - Strict-Transport-Security enforces HTTPS for 1 year
+- **security.txt** - Standard security contact file at /.well-known/security.txt
+- **npm audit** - 0 vulnerabilities confirmed
+
+### Fixed
+- **FAQ Updates** - Corrected outdated WASM references, now reflects Native Web Crypto API
+- Added new FAQ about browser fallback for older browsers without Ed25519 support
+
+---
+
 ## [0.9.0] - 2026-01-29
 
 ### Added

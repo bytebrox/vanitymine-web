@@ -1,0 +1,73 @@
+# VanityMine Security Policy
+# https://securitytxt.org/
+# Last updated: 2026-01-29
+
+Contact: https://github.com/bytebrox/vanitymine-web/security/advisories/new
+Contact: mailto:security@vanitymine.com
+Expires: 2027-01-29T00:00:00.000Z
+Preferred-Languages: en, de
+Canonical: https://vanitymine.com/.well-known/security.txt
+Policy: https://github.com/bytebrox/vanitymine-web/security/policy
+
+# Acknowledgments: https://vanitymine.com/thanks
+
+# ============================================
+# ABOUT VANITYMINE
+# ============================================
+# VanityMine is a Solana vanity address generator.
+# Website: https://vanitymine.com
+# Source Code: https://github.com/bytebrox/vanitymine-web
+# License: MIT
+
+# ============================================
+# SECURITY ARCHITECTURE
+# ============================================
+# - 100% client-side key generation (browser only)
+# - Private keys NEVER sent to any server
+# - Uses Web Crypto API (SubtleCrypto) for Ed25519
+# - Hardware-backed CSPRNG for random number generation
+# - All cryptographic operations happen in Web Workers
+# - Content Security Policy prevents data exfiltration
+# - No external scripts or tracking
+
+# ============================================
+# WHAT WE STORE (Community Stats only)
+# ============================================
+# - totalAttempts: Single integer counter
+# - totalFound: Single integer counter
+# - NO IP addresses, NO keys, NO patterns, NO user data
+
+# ============================================
+# SECURITY HEADERS
+# ============================================
+# - Content-Security-Policy: Strict CSP
+# - Strict-Transport-Security: HSTS enabled
+# - X-Frame-Options: DENY (no iframe embedding)
+# - X-Content-Type-Options: nosniff
+# - Referrer-Policy: strict-origin-when-cross-origin
+# - Permissions-Policy: No camera/microphone/geolocation
+
+# ============================================
+# REPORTING VULNERABILITIES
+# ============================================
+# We take security seriously. If you discover a vulnerability:
+# 1. DO NOT open a public GitHub issue
+# 2. Use GitHub Security Advisories (private)
+# 3. Or email security@vanitymine.com
+# 4. We aim to respond within 48 hours
+# 5. We will credit researchers in our changelog
+
+# ============================================
+# SCOPE
+# ============================================
+# In scope:
+# - vanitymine.com and all subdomains
+# - GitHub repository code
+# - API endpoints (/api/*)
+#
+# Out of scope:
+# - Third-party services (Vercel, Upstash)
+# - Social engineering attacks
+# - DoS/DDoS attacks
+
+# Thank you for helping keep VanityMine secure!
