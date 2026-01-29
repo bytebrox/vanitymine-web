@@ -110,7 +110,7 @@ IMPORTANT:
             Token Address (Mint)
           </label>
           <button
-            onClick={() => copyToClipboard(result.publicKey, 'public')}
+            onClick={() => { void copyToClipboard(result.publicKey, 'public'); }}
             className="text-micro text-accent hover:underline"
           >
             {copiedField === 'public' ? 'Copied!' : 'Copy'}
@@ -142,7 +142,7 @@ IMPORTANT:
             </button>
             {showPrivateKey && (
               <button
-                onClick={() => copyToClipboard(result.privateKey, 'private')}
+                onClick={() => { void copyToClipboard(result.privateKey, 'private'); }}
                 className="text-micro text-accent hover:underline"
               >
                 {copiedField === 'private' ? 'Copied!' : 'Copy'}
