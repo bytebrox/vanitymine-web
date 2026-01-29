@@ -4,6 +4,26 @@ All notable changes to VanityMine will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.8.0] - 2026-01-29
+
+### Added
+- **Domain Suggestions** - After finding an address, get matching domain name suggestions
+- **Improved Difficulty Calculator** - Labels now based on actual difficulty, not just character count
+
+### Domain Suggestions
+- Shows domain suggestions based on your vanity pattern (.sol, .solana, .bonk, .poor)
+- Direct links to registration pages (sns.id for .sol, alldomains.id for others)
+- Works for both Wallet and Token Mint generators
+- Lightweight: no blockchain SDK needed, just links to official registration sites
+
+### Difficulty Improvements
+- Difficulty labels (Easy, Moderate, Hard, etc.) now consider first-character rarity
+- Time estimates consistent with warnings
+- Case-sensitive/insensitive modes properly affect difficulty calculation
+- Example: "Sol" with case-sensitive shows "Hard" instead of misleading "Quick"
+
+---
+
 ## [0.7.0] - 2026-01-29
 
 ### Added
@@ -11,12 +31,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Upstash Redis Integration** - Serverless database for anonymous community statistics
 - **FAQ Updates** - Added Token Mint category with 6 new questions
 - **How it Works Updates** - Added Token Mint Generator section with pump.fun instructions
+- **Improved Pattern Validator** - Clear warnings for difficult patterns
 
 ### Features
 - Real-time community stats displayed in navbar
 - Stats update automatically when addresses are found
 - Numbers formatted with K/M/B/T suffixes for readability
 - Stats refresh every 30 seconds
+
+### Pattern Difficulty Warnings
+- **Reference table** showing estimated times for 3-6+ character patterns
+- **Graduated warnings:** Orange for 5 chars, Red for 6 chars, Extreme alert for 7+ chars
+- **Clear time estimates:** "~30 min", "several hours", "days to weeks"
+- **New difficulty labels:** Easy, Quick, Moderate, Hard, Very Hard, Extreme, Nearly Impossible
+- **Actionable tips:** Suggests splitting pattern or reducing length for extreme cases
 
 ### Privacy & Transparency
 - **Only two numbers are stored:** `totalAttempts` and `totalFound` - nothing else

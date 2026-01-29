@@ -45,19 +45,25 @@ export function DifficultyDisplay({
     [difficulty, estimatedRate]
   );
 
-  // Difficulty level indicator
-  const getDifficultyLevel = (): { label: string; color: string } => {
-    const totalChars = prefix.length + suffix.length;
-    if (totalChars === 0) return { label: 'Instant', color: 'text-green-600' };
-    if (totalChars <= 2) return { label: 'Easy', color: 'text-green-600' };
-    if (totalChars <= 4) return { label: 'Moderate', color: 'text-yellow-600' };
-    if (totalChars <= 6) return { label: 'Hard', color: 'text-orange-600' };
-    return { label: 'Very Hard', color: 'text-accent' };
+  // Difficulty level indicator based on actual difficulty (including first char rarity)
+  const getDifficultyLevel = (): { label: string; color: string; warning?: string } => {
+    // Use actual difficulty number which includes first char multiplier
+    if (difficulty <= 1) return { label: 'Instant', color: 'text-green-600' };
+    if (difficulty < 50_000) return { label: 'Easy', color: 'text-green-600' };
+    if (difficulty < 500_000) return { label: 'Quick', color: 'text-green-600' };
+    if (difficulty < 5_000_000) return { label: 'Moderate', color: 'text-yellow-600' };
+    if (difficulty < 50_000_000) return { label: 'Hard', color: 'text-orange-600', warning: 'This may take 10-60 minutes' };
+    if (difficulty < 500_000_000) return { label: 'Very Hard', color: 'text-red-600', warning: 'This may take several hours' };
+    if (difficulty < 5_000_000_000) return { label: 'Extreme', color: 'text-red-700', warning: 'This may take days to weeks' };
+    return { label: 'Nearly Impossible', color: 'text-red-800', warning: 'This could take weeks to months - are you sure?' };
   };
 
   const level = getDifficultyLevel();
   const hasPattern = prefix.length > 0 || suffix.length > 0;
-  const showLengthWarning = prefix.length + suffix.length > 5;
+  const totalChars = prefix.length + suffix.length;
+  const showLengthWarning = totalChars > 5;
+  const isExtreme = totalChars >= 7;
+  const isDangerous = totalChars >= 6;
   
   // Check for rare first character warning
   const firstCharWarning = useMemo(
@@ -66,8 +72,8 @@ export function DifficultyDisplay({
   );
   
   const firstCharRarity = useMemo(
-    () => getFirstCharRarity(prefix),
-    [prefix]
+    () => getFirstCharRarity(prefix, caseSensitive),
+    [prefix, caseSensitive]
   );
   
   // Show extreme warning for very rare patterns
@@ -116,10 +122,38 @@ export function DifficultyDisplay({
       </div>
 
       {/* Warning area */}
-      {(showLengthWarning || firstCharWarning) && (
-        <div className="mt-6 pt-4 border-t border-ink/20 space-y-2">
-          {/* Rare first character warning - HIGH PRIORITY */}
-          {firstCharWarning && (
+      {(showLengthWarning || firstCharWarning || level.warning) && (
+        <div className="mt-6 pt-4 border-t border-ink/20 space-y-3">
+          {/* Extreme pattern warning - HIGHEST PRIORITY */}
+          {isExtreme && (
+            <div className="p-4 bg-red-100 border-2 border-red-500 rounded">
+              <p className="text-sm font-bold text-red-800 flex items-center gap-2">
+                🚨 Extreme Pattern Detected
+              </p>
+              <p className="text-sm mt-2 text-red-700">
+                <strong>{totalChars} characters</strong> will take an extremely long time to find.
+                This could run for <strong>days, weeks, or even months</strong>.
+              </p>
+              <p className="text-micro mt-2 text-red-600">
+                Consider: Use 4-5 characters max, or split between prefix and suffix.
+              </p>
+            </div>
+          )}
+          
+          {/* Dangerous pattern warning */}
+          {isDangerous && !isExtreme && (
+            <div className="p-3 bg-orange-50 border-l-4 border-orange-500">
+              <p className="text-sm font-medium text-orange-800">
+                ⚠️ Long Pattern Warning
+              </p>
+              <p className="text-micro mt-1 text-orange-700">
+                {level.warning || `${totalChars} characters may take several hours to find.`}
+              </p>
+            </div>
+          )}
+          
+          {/* Rare first character warning */}
+          {firstCharWarning && !isExtreme && (
             <div className={`p-3 border-l-4 ${isExtremelyRare ? 'bg-red-50 border-red-500' : 'bg-yellow-50 border-yellow-500'}`}>
               <p className={`text-sm font-medium ${isExtremelyRare ? 'text-red-800' : 'text-yellow-800'}`}>
                 {isExtremelyRare ? '⚠️ Extreme Difficulty' : '⚠️ Increased Difficulty'}
@@ -135,13 +169,37 @@ export function DifficultyDisplay({
             </div>
           )}
           
-          {/* Length warning */}
-          {showLengthWarning && (
+          {/* General length info */}
+          {showLengthWarning && !isExtreme && !isDangerous && (
             <p className="text-micro text-accent">
-              Note: Longer patterns take exponentially longer to find.
-              Each additional character multiplies search time by ~58x.
+              Note: Each additional character multiplies search time by ~58x.
             </p>
           )}
+        </div>
+      )}
+
+      {/* Reference table for pattern length - shown when no pattern */}
+      {!hasPattern && (
+        <div className="mt-6 pt-4 border-t border-ink/20">
+          <p className="text-micro text-muted mb-3">Estimated times at ~50K keys/sec:</p>
+          <div className="grid grid-cols-4 gap-2 text-micro">
+            <div className="text-center p-2 bg-green-50 rounded">
+              <p className="font-bold text-green-700">3 chars</p>
+              <p className="text-green-600">&lt; 5 sec</p>
+            </div>
+            <div className="text-center p-2 bg-yellow-50 rounded">
+              <p className="font-bold text-yellow-700">4 chars</p>
+              <p className="text-yellow-600">~1 min</p>
+            </div>
+            <div className="text-center p-2 bg-orange-50 rounded">
+              <p className="font-bold text-orange-700">5 chars</p>
+              <p className="text-orange-600">~30 min</p>
+            </div>
+            <div className="text-center p-2 bg-red-50 rounded">
+              <p className="font-bold text-red-700">6+ chars</p>
+              <p className="text-red-600">hours+</p>
+            </div>
+          </div>
         </div>
       )}
     </div>

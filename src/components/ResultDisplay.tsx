@@ -8,6 +8,7 @@
 import { useState } from 'react';
 import { GeneratedKeypair } from '@/types';
 import { formatNumber, formatDuration } from '@/lib/format';
+import { DomainSuggestions } from './DomainSuggestions';
 
 interface ResultDisplayProps {
   result: GeneratedKeypair;
@@ -163,6 +164,11 @@ IMPORTANT:
           <li>• This key was generated locally and is not stored anywhere</li>
           <li>• We do not have access to your private key</li>
         </ul>
+      </div>
+
+      {/* Domain suggestions */}
+      <div className="mb-6">
+        <DomainSuggestions pattern={result.matchedPattern} />
       </div>
 
       {/* Actions */}

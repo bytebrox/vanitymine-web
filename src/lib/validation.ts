@@ -154,37 +154,59 @@ const RARE_FIRST_CHARS = 'JKL';
 const VERY_RARE_FIRST_CHARS = 'MNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
 
 /**
+ * Get the rarity multiplier for a single character at the start
+ */
+function getCharRarity(char: string): { multiplier: number; rarity: 'common' | 'rare' | 'very_rare' | 'extreme' } {
+  // Common first characters (1-9, A-H) - normal difficulty
+  if (COMMON_FIRST_CHARS.includes(char)) {
+    return { multiplier: 1, rarity: 'common' };
+  }
+  
+  // Rare first characters (J-L) - ~10x harder
+  if (RARE_FIRST_CHARS.includes(char)) {
+    return { multiplier: 10, rarity: 'rare' };
+  }
+  
+  // Very rare uppercase (M-Z) - ~100x harder
+  if (char >= 'M' && char <= 'Z') {
+    return { multiplier: 100, rarity: 'very_rare' };
+  }
+  
+  // Lowercase letters at start - practically impossible (~1000x+ harder)
+  if (char >= 'a' && char <= 'z') {
+    return { multiplier: 1000, rarity: 'extreme' };
+  }
+  
+  return { multiplier: 1, rarity: 'common' };
+}
+
+/**
  * Get the rarity multiplier for the first character of a prefix
  * Solana addresses don't have uniformly distributed first characters
+ * For case-insensitive, we use the better (less rare) variant
  */
-export function getFirstCharRarity(prefix: string): { multiplier: number; rarity: 'common' | 'rare' | 'very_rare' | 'extreme' } {
+export function getFirstCharRarity(prefix: string, caseSensitive: boolean = true): { multiplier: number; rarity: 'common' | 'rare' | 'very_rare' | 'extreme' } {
   if (!prefix || prefix.length === 0) {
     return { multiplier: 1, rarity: 'common' };
   }
   
   const firstChar = prefix[0];
+  const charRarity = getCharRarity(firstChar);
   
-  // Common first characters (1-9, A-H) - normal difficulty
-  if (COMMON_FIRST_CHARS.includes(firstChar)) {
-    return { multiplier: 1, rarity: 'common' };
+  // For case-insensitive: check if the other case is better
+  if (!caseSensitive && /[a-zA-Z]/.test(firstChar)) {
+    const otherCase = firstChar === firstChar.toUpperCase() 
+      ? firstChar.toLowerCase() 
+      : firstChar.toUpperCase();
+    const otherRarity = getCharRarity(otherCase);
+    
+    // Use the better (lower multiplier) variant
+    if (otherRarity.multiplier < charRarity.multiplier) {
+      return otherRarity;
+    }
   }
   
-  // Rare first characters (J-L) - ~10x harder
-  if (RARE_FIRST_CHARS.includes(firstChar)) {
-    return { multiplier: 10, rarity: 'rare' };
-  }
-  
-  // Very rare uppercase (M-Z) - ~100x harder
-  if (firstChar >= 'M' && firstChar <= 'Z') {
-    return { multiplier: 100, rarity: 'very_rare' };
-  }
-  
-  // Lowercase letters at start - practically impossible (~1000x+ harder)
-  if (firstChar >= 'a' && firstChar <= 'z') {
-    return { multiplier: 1000, rarity: 'extreme' };
-  }
-  
-  return { multiplier: 1, rarity: 'common' };
+  return charRarity;
 }
 
 /**
@@ -193,23 +215,21 @@ export function getFirstCharRarity(prefix: string): { multiplier: number; rarity
 export function getFirstCharWarning(prefix: string, caseSensitive: boolean): string | null {
   if (!prefix || prefix.length === 0) return null;
   
-  const { rarity } = getFirstCharRarity(prefix);
+  // Use the same logic as difficulty calculation for consistency
+  const { rarity, multiplier } = getFirstCharRarity(prefix, caseSensitive);
   const firstChar = prefix[0];
   
-  // If case-insensitive and it's a letter, it might match a common variant
-  if (!caseSensitive && /[a-zA-Z]/.test(firstChar)) {
-    // Check if uppercase version is common
-    const upper = firstChar.toUpperCase();
-    if (COMMON_FIRST_CHARS.includes(upper)) {
-      return null; // Will match common uppercase version
-    }
-  }
+  // No warning for common characters
+  if (rarity === 'common') return null;
+  
+  // For case-insensitive, adjust the message
+  const caseNote = !caseSensitive ? ' (even with case-insensitive matching)' : '';
   
   switch (rarity) {
     case 'rare':
-      return `"${firstChar}" is uncommon at the start of addresses. This may take ~10x longer than expected.`;
+      return `"${firstChar.toUpperCase()}" is uncommon at the start of addresses${caseNote}. This may take ~${multiplier}x longer than expected.`;
     case 'very_rare':
-      return `"${firstChar}" is very rare at the start of addresses. This may take ~100x longer than expected. Consider using it as a suffix instead.`;
+      return `"${firstChar.toUpperCase()}" is very rare at the start of addresses${caseNote}. This may take ~${multiplier}x longer. Consider using it as a suffix instead.`;
     case 'extreme':
       return `Lowercase "${firstChar}" at the start is extremely rare (almost never occurs). This could take hours or days. Strongly recommend using as suffix or disabling case-sensitive matching.`;
     default:
@@ -237,8 +257,9 @@ export function estimateDifficulty(prefix: string, suffix: string, caseSensitive
   let baseDifficulty = Math.pow(alphabetSize, totalChars);
   
   // Apply first character rarity multiplier for prefix
-  if (prefix.length > 0 && caseSensitive) {
-    const { multiplier } = getFirstCharRarity(prefix);
+  // Always apply this - even case-insensitive has rarity issues
+  if (prefix.length > 0) {
+    const { multiplier } = getFirstCharRarity(prefix, caseSensitive);
     baseDifficulty *= multiplier;
   }
   

@@ -9,6 +9,7 @@
 import { useState } from 'react';
 import { GeneratedKeypair } from '@/types';
 import { formatNumber, formatDuration } from '@/lib/format';
+import { DomainSuggestions } from '@/components';
 
 interface TokenResultDisplayProps {
   result: GeneratedKeypair;
@@ -189,6 +190,11 @@ IMPORTANT:
           <li>• The token address becomes public and permanent</li>
           <li>• This keypair was generated locally in your browser</li>
         </ul>
+      </div>
+
+      {/* Domain suggestions for token */}
+      <div className="mb-6">
+        <DomainSuggestions pattern={result.matchedPattern} />
       </div>
 
       {/* Actions */}

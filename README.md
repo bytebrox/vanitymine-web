@@ -26,9 +26,12 @@ This makes addresses more memorable and personal – perfect for public wallets,
 - **125x Faster** – Native Web Crypto API outperforms all JavaScript/WASM implementations
 - **Multi-Core Processing** – Uses all available CPU cores (~100,000 keys/second)
 - **Token Mint Generator** – Create vanity addresses for pump.fun token launches
+- **Domain Suggestions** – Get matching .sol, .solana, .bonk, .poor domain suggestions after generating
+- **Smart Difficulty Estimation** – Accurate time estimates including first-character rarity
 - **Sound Notification** – Optional audio alert when address is found
 - **Instant Export** – Download keys as TXT or JSON (Solana CLI compatible)
-- **Works Offline** – No internet required after page loads
+- **Works Offline** – No internet required after page loads (stats sync when online)
+- **Community Stats** – See global generation statistics (anonymous, no tracking)
 - **Mobile Optimized** – Fully responsive design with touch-friendly controls
 - **Comprehensive FAQ** – Detailed answers to common questions
 
@@ -110,7 +113,21 @@ The API source code is fully visible at `src/app/api/stats/route.ts`. We physica
 2. **Generation** – Multiple Web Workers generate random Ed25519 keypairs in parallel
 3. **Matching** – Each public key is Base58-encoded and checked against your pattern
 4. **Result** – When a match is found, you receive the complete keypair
-5. **Export** – Download your keys in your preferred format
+5. **Domain Suggestions** – Get matching domain names for your pattern
+6. **Export** – Download your keys in your preferred format
+
+## Domain Suggestions
+
+After generating a vanity address, VanityMine suggests matching domain names you can register:
+
+| TLD | Provider | Example |
+|-----|----------|---------|
+| `.sol` | SNS (Bonfida) | `doge.sol` |
+| `.solana` | AllDomains | `doge.solana` |
+| `.bonk` | AllDomains | `doge.bonk` |
+| `.poor` | AllDomains | `doge.poor` |
+
+Click any suggestion to check availability and register directly on the provider's site. Domains make your vanity address even easier to share!
 
 ## Architecture
 
