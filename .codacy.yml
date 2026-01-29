@@ -6,6 +6,11 @@ exclude_paths:
   # Generated/bundled files (contain third-party library code)
   - "public/vanity-worker.js"
   
+  # Cryptography workers (low-level Ed25519/Base58 code with intentional array access patterns)
+  # These trigger false positives for "Object Injection Sink" on standard crypto operations
+  - "src/workers/vanity.worker.ts"
+  - "src/workers/vanity.worker.source.ts"
+  
   # Build outputs
   - ".next/**"
   - "node_modules/**"
