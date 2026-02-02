@@ -12,7 +12,7 @@ const nextConfig = {
               "default-src 'self'",
               "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-              "img-src 'self' data: blob: https://github.com https://*.githubusercontent.com https://snyk.io https://app.codacy.com https://img.shields.io https://api.securityscorecards.dev",
+              "img-src 'self' data: blob: https://github.com https://*.github.com https://*.githubusercontent.com https://snyk.io https://app.codacy.com https://img.shields.io https://api.securityscorecards.dev https://badgen.net",
               "font-src 'self' https://fonts.gstatic.com",
               "connect-src 'self'",
               "worker-src 'self' blob:",
