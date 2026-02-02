@@ -188,9 +188,9 @@ This proves your browser uses hardware-backed random number generation – the g
 ┌─────────────────────────────────────────────────────────────────┐
 │                         YOUR BROWSER                            │
 │  ┌───────────────┐    ┌──────────────────────────────────────┐  │
-│  │   Main Thread │    │          Web Workers (WASM)          │  │
+│  │   Main Thread │    │     Web Workers (Native Ed25519)     │  │
 │  │   (UI/React)  │───▶│  Worker 1 │ Worker 2 │ ... │ Worker N│  │
-│  └───────────────┘    │  (Ed25519)│ (Ed25519)│     │(Ed25519)│  │
+│  └───────────────┘    │(WebCrypto)│(WebCrypto)│    │(WebCrypto)│ │
 │                       └──────────────────────────────────────┘  │
 │                                 ▼                               │
 │                         Keys generated locally                  │
@@ -235,7 +235,7 @@ This is fundamentally different from server-based generation where keys would be
 
 ### Native Web Crypto Performance
 
-VanityMine uses the **Native Web Crypto API** for Ed25519 key generation (Chrome 137+, Firefox 129+):
+VanityMine uses the **Native Web Crypto API** for Ed25519 key generation (Chrome 113+, Firefox 129+, Safari 17+):
 
 - Direct browser/OS-level implementation – no JavaScript overhead
 - ~6,000+ keys/second per CPU core

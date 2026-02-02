@@ -66,7 +66,7 @@ export function SecurityInfo({ isOpen, onClose }: SecurityInfoProps) {
                 </div>
               </div>
               <p className="text-xs sm:text-micro text-muted mt-2 sm:mt-3">
-                Modern browsers (Chrome 137+, Firefox 129+) support native Ed25519 cryptography. 
+                Modern browsers (Chrome 113+, Firefox 129+, Safari 17+) support native Ed25519 cryptography. 
                 We leverage this for maximum speed. A 4-character pattern that takes minutes elsewhere 
                 can be found in seconds with VanityMine.
               </p>
@@ -144,7 +144,7 @@ export function SecurityInfo({ isOpen, onClose }: SecurityInfoProps) {
               </p>
               <p>
                 <strong>Native Web Crypto API – Our Secret Weapon:</strong> This is what makes 
-                VanityMine revolutionary. Modern browsers (Chrome 137+, Firefox 129+) support 
+                VanityMine revolutionary. Modern browsers (Chrome 113+, Firefox 129+, Safari 17+) support 
                 Ed25519 natively in the Web Crypto API. This runs directly in the browser's 
                 cryptographic engine with OS-level optimizations, delivering 
                 <span className="text-accent font-bold"> 125x the performance</span> of pure JavaScript. 

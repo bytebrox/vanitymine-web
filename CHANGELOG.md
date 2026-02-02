@@ -12,6 +12,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   - **Fixed Vercel deployment** - Synced `vercel.json` CSP with `next.config.js`
   - Security badges now display correctly in production (Security page, Footer)
 
+### Documentation
+- **README** - Updated architecture diagram to reflect Native Web Crypto API
+  - Changed "Web Workers (WASM)" to "Web Workers (Native Ed25519)"
+  - More accurate representation of current implementation
+- **Browser Version Fix** - Corrected Chrome version from 137+ to 113+
+  - Updated in README, FAQ, SecurityInfo, and CHANGELOG
+  - Added Safari 17+ to browser support list
+
 ### Removed
 - **Token Result Display** - Removed unused DomainSuggestions component from Token Mint page
   - Cleaner codebase, removed dead import and JSX
@@ -220,7 +228,7 @@ All automated security checks are now documented and publicly visible:
 ## [0.5.0] - 2026-01-27
 
 ### Added
-- **Native Web Crypto API** - Uses browser's native Ed25519 implementation (Chrome 137+, Firefox 129+)
+- **Native Web Crypto API** - Uses browser's native Ed25519 implementation (Chrome 113+, Firefox 129+, Safari 17+)
 - **Automatic Fallback** - Falls back to WASM (watsign) for older browsers
 
 ### Performance

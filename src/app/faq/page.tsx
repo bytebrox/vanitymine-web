@@ -167,7 +167,7 @@ const faqs: FAQItem[] = [
   {
     category: 'Technical',
     question: 'Why is this so fast?',
-    answer: 'We use the native Web Crypto API (SubtleCrypto.generateKey) which is implemented in browser\'s C++ code, not JavaScript. This is 125x faster than JavaScript implementations and even faster than WebAssembly. Chrome 137+, Firefox 129+, and Safari 17+ all support native Ed25519.',
+    answer: 'We use the native Web Crypto API (SubtleCrypto.generateKey) which is implemented in browser\'s C++ code, not JavaScript. This is 125x faster than JavaScript implementations and even faster than WebAssembly. Chrome 113+, Firefox 129+, and Safari 17+ all support native Ed25519.',
   },
   {
     category: 'Technical',
@@ -177,7 +177,7 @@ const faqs: FAQItem[] = [
   {
     category: 'Technical',
     question: 'Why does the speed vary?',
-    answer: 'Generation speed depends on your device\'s CPU, how many cores it has, browser support for native Ed25519, and what else your computer is doing. Modern multi-core processors with native Ed25519 support (Chrome 137+) will be significantly faster.',
+    answer: 'Generation speed depends on your device\'s CPU, how many cores it has, browser support for native Ed25519, and what else your computer is doing. Modern multi-core processors with native Ed25519 support (Chrome 113+, Firefox 129+, Safari 17+) will be significantly faster.',
   },
   {
     category: 'Technical',
