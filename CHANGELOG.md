@@ -8,8 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 - **CSP Headers** - Extended img-src directive for external badges
-  - Added `*.github.com` for GitHub badges
-  - Added `badgen.net` for additional badge support
+  - Added `*.github.com` and `badgen.net` to `next.config.js`
+  - **Fixed Vercel deployment** - Synced `vercel.json` CSP with `next.config.js`
+  - Security badges now display correctly in production (Security page, Footer)
 
 ### Removed
 - **Token Result Display** - Removed unused DomainSuggestions component from Token Mint page
