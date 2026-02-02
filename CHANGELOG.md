@@ -4,6 +4,19 @@ All notable changes to VanityMine will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.9.6] - 2026-02-02
+
+### Fixed
+- **CSP Headers** - Extended img-src directive for external badges
+  - Added `*.github.com` for GitHub badges
+  - Added `badgen.net` for additional badge support
+
+### Removed
+- **Token Result Display** - Removed unused DomainSuggestions component from Token Mint page
+  - Cleaner codebase, removed dead import and JSX
+
+---
+
 ## [0.9.5] - 2026-01-29
 
 ### Fixed
