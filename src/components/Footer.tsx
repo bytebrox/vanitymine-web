@@ -140,7 +140,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://x.com"
+                  href="https://x.com/i/communities/2019671822015377447"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-paper/70 hover:text-paper transition-colors"

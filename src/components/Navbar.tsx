@@ -83,7 +83,7 @@ export function Navbar({ onHowItWorksClick }: NavbarProps) {
             </a>
             {/* X.com Icon */}
             <a
-              href="https://x.com"
+              href="https://x.com/i/communities/2019671822015377447"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted hover:text-ink transition-colors"
@@ -156,7 +156,7 @@ export function Navbar({ onHowItWorksClick }: NavbarProps) {
               GitHub
             </a>
             <a
-              href="https://x.com"
+              href="https://x.com/i/communities/2019671822015377447"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 py-2 text-body text-muted hover:text-ink transition-colors"
